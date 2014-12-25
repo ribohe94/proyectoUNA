@@ -24,6 +24,7 @@ public class Proyecto1 {
         ventana.iniciar();
         
         System.out.println("Holis");
+        System.out.println("Holis soy Will");
     }
     
 }

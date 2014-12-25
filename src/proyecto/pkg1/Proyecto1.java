@@ -22,6 +22,8 @@ public class Proyecto1 {
         Control gestorPrincipal = new Control();
         VentanaTabla ventana = new VentanaTabla(gestorPrincipal);
         ventana.iniciar();
+        
+        System.out.println("Holis");
     }
     
 }

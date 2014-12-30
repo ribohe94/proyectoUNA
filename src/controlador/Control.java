@@ -27,8 +27,12 @@ public class Control {
          datos.cargarDatos();
      }
     
-     public void agregarDoctor(Doctor nuevoDoctor){
-         datos.agregarDoctor(nuevoDoctor);
+     public boolean agregarDoctor(Doctor nuevoDoctor){
+         return datos.agregarDoctor(nuevoDoctor);
+     }
+     
+     public void eliminarDoctor(int p){
+         datos.eliminarDoctor(p);
      }
      
      public void actualizar(Object evento){

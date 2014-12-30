@@ -5,6 +5,7 @@ import controlador.Control;
 import java.awt.BorderLayout;
 import java.awt.Container;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
@@ -46,27 +47,32 @@ public class VentanaPrincipal extends JFrame{
     }
     
     private void ajustarComponentes(Container c){
-        btnDoctores = new JButton("Consultar doctores");
+        btnDoctores = new JButton("Administrar doctores");
         btnCitas = new JButton("Crear nueva cita");
-        btnPacientes = new JButton("Consultar paciente");
+        btnPacientes = new JButton("Consultar paciente");                
         
-        panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));        
+        panelBotones = new JPanel(new FlowLayout(FlowLayout.CENTER));  
+        panelBotones.setBorder(BorderFactory.createEmptyBorder(80,0,0,0));
         panelBotones.add(btnDoctores);
         panelBotones.add(btnCitas);
-        panelBotones.add(btnPacientes);
+        panelBotones.add(btnPacientes);                                
         
-        panelEncabezado = new JPanel(new FlowLayout(FlowLayout.CENTER));                
+        lbPrincipal = new JLabel("MENU PRINCIPAL");        
+        lbPrincipal.setFont(new Font(Font.SERIF, Font.BOLD, 45));
         
-        lbEncabezado = new JLabel("Seleccione la opción deseada.");
-        panelEncabezado.add(lbEncabezado);  
+        panelEncabezado = new JPanel(new FlowLayout(FlowLayout.CENTER));                        
+        panelEncabezado.setBorder(BorderFactory.createEmptyBorder(20,0,0,0));        
+        panelEncabezado.add(lbPrincipal);          
         
-        panelContenido = new JPanel(new BorderLayout());
-                
+        lbSeleccione = new JLabel("Seleccione la opción deseada.");        
+        lbSeleccione.setHorizontalAlignment(JLabel.CENTER);
+        
+        panelContenido = new JPanel(new BorderLayout());                        
         panelContenido.add(panelEncabezado, BorderLayout.NORTH);       
-        panelContenido.add(panelBotones, BorderLayout.SOUTH);
+        panelContenido.add(panelBotones, BorderLayout.CENTER);
+        panelContenido.add(lbSeleccione, BorderLayout.SOUTH);
         
-        panelPrincipal = new JPanel();
-        panelPrincipal.setBorder(BorderFactory.createEmptyBorder(120,0,0,0));
+        panelPrincipal = new JPanel();        
         panelPrincipal.add(panelContenido);
         
         c.add(panelPrincipal);
@@ -129,7 +135,8 @@ public class VentanaPrincipal extends JFrame{
     private JButton btnDoctores;
     private JButton btnPacientes;
     private JButton btnCitas;
-    private JLabel lbEncabezado;    
+    private JLabel lbSeleccione;    
+    private JLabel lbPrincipal;
     
     private VentanaDoctores ventanaDoctores;
     private VentanaCitas ventanaCitas;

@@ -8,8 +8,27 @@ public class ConjuntoDoctores {
         doctores = new ArrayList<>();
     }
     
-    public void agregar(Doctor nuevoDoctor){
-        doctores.add(nuevoDoctor);
+    public boolean agregar(Doctor nuevoDoctor){        
+         if(buscarDoctor(nuevoDoctor.getId())){
+            return false;
+        }else{
+            doctores.add(nuevoDoctor);
+            return true; 
+        }                 
+    }
+    
+    public Doctor eliminar(int p){
+        return doctores.remove(p);
+    }
+
+    
+    public boolean buscarDoctor(String buscarId){
+        for(int i = 0; i<doctores.size(); i++){
+            if(doctores.get(i).getId().compareTo(buscarId) == 0){
+                return true;                
+            }            
+        }
+        return false;
     }
     
     public Doctor recuperar(int p){

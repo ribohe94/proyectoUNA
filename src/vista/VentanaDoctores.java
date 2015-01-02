@@ -41,6 +41,9 @@ public class VentanaDoctores extends JPanel implements Observer {
         ajustarConfiguracionInicial();
         ajustarComponentes();
         ajustarEventos();
+        gestorPrincipal.registrar(this);
+        gestorPrincipal.cargarDatos();
+        estado.mostrarMensaje("Programa iniciado ...");
     }
 
     private void ajustarConfiguracionInicial() {
@@ -192,7 +195,9 @@ public class VentanaDoctores extends JPanel implements Observer {
                                 
                 if(!gestorPrincipal.agregarDoctor(nuevoDoctor)){                    
                     JOptionPane.showMessageDialog(null, "Ya existe esta persona en el registro.", null, JOptionPane.ERROR_MESSAGE);        
-                }                              
+                }
+                tablaDatos.repaint();
+                estado.repaint();
             }
         });
                 
@@ -202,7 +207,8 @@ public class VentanaDoctores extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e) {               
                 gestorPrincipal.eliminarDoctor(tablaDatos.getSelectedRow());                        
             }
-        });    
+        });  
+        tablaDatos.repaint();
     }
 
     public void iniciar() {

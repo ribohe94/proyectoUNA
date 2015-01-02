@@ -118,6 +118,7 @@ public class VentanaDoctores extends JPanel implements Observer {
         panelContenidoFormulario.setLayout(new GridBagLayout());
         panelContenidoFormulario.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Formulario"), new EmptyBorder(0, 20, 0, 20)));
         panelContenidoFormulario.setBackground(new Color(102, 102, 102));
+        
         gbc.insets = new Insets(10, 0, 10, 0);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -125,17 +126,17 @@ public class VentanaDoctores extends JPanel implements Observer {
         gbc.gridx = 1;
         panelContenidoFormulario.add(txtId, gbc);
         gbc.gridx = 0;
-        gbc.gridy = 3;
+        gbc.gridy = 1;
         panelContenidoFormulario.add(lbNombre, gbc);
         gbc.gridx = 1;
         panelContenidoFormulario.add(txtNombre, gbc);
         gbc.gridx = 0;
-        gbc.gridy = 1;
+        gbc.gridy = 2;
         panelContenidoFormulario.add(lbApellido, gbc);
         gbc.gridx = 1;
         panelContenidoFormulario.add(txtApellido, gbc);
         gbc.gridx = 0;
-        gbc.gridy = 2;
+        gbc.gridy = 3;
         panelContenidoFormulario.add(lbEdad, gbc);
         gbc.gridx = 1;
         panelContenidoFormulario.add(txtEdad, gbc);

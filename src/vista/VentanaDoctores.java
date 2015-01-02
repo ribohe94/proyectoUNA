@@ -7,13 +7,16 @@ import java.awt.FlowLayout;
 import java.util.Observable;
 import java.util.Observer;
 import controlador.Control;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
+import javax.swing.ButtonModel;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
@@ -24,6 +27,8 @@ import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.border.CompoundBorder;
+import javax.swing.border.EmptyBorder;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import modelo.Doctor;
@@ -40,12 +45,13 @@ public class VentanaDoctores extends JFrame implements Observer {
 
     private void ajustarConfiguracionInicial() {
         setTitle("Información de personas");
-        setSize(600, 400);
-        setResizable(false);
+        setSize(800, 400);
+        setResizable(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
+    GridBagConstraints gbc = new GridBagConstraints();
     private void ajustarComponentes(Container c) {        
         //GridBagConstraints gbc = new GridBagConstraints();
         estado = new BarraEstado();
@@ -55,6 +61,12 @@ public class VentanaDoctores extends JFrame implements Observer {
         lbApellido = new JLabel("Apellido: ");
         lbId = new JLabel("Identificacion: ");
         lbEdad = new JLabel("Edad: ");
+        //Ajustamos Labels
+        lbEncabezado.setForeground(new Color(204, 204, 204));
+        lbNombre.setForeground(new Color(204, 204, 204));
+        lbApellido.setForeground(new Color(204, 204, 204));
+        lbId.setForeground(new Color(204, 204, 204));
+        lbEdad.setForeground(new Color(204, 204, 204));
         //inicializamos TXT
         txtNombre = new JTextField(10);
         txtApellido = new JTextField(10);
@@ -71,40 +83,85 @@ public class VentanaDoctores extends JFrame implements Observer {
         btnAgregar = new JButton("Agregar");
         btnVerExpediente = new JButton("Ver Expediente");
         btnEliminar = new JButton("Eliminar");
+        //Ajustamos botones
         //Inicializamos JRadioButton's
         rdbDisponible = new JRadioButton("Disponible");
+        rdbDisponible.setBackground(new Color(102, 102, 102));
+        rdbDisponible.setForeground(new Color(204, 204, 204));
         rdbNoDisponible = new JRadioButton("No Disponible");
+        rdbNoDisponible.setBackground(new Color(102, 102, 102));
+        rdbNoDisponible.setForeground(new Color(204, 204, 204));
         grupoRadioButton = new ButtonGroup();
         grupoRadioButton.add(rdbDisponible);
         grupoRadioButton.add(rdbNoDisponible);
         //Ajustamos panelEncabezado
         panelEncabezado.setLayout(new FlowLayout(FlowLayout.CENTER));
-        panelEncabezado.setBorder(BorderFactory.createEmptyBorder(12, 12, 6, 12));
-        panelEncabezado.add(lbEncabezado);        
+        panelEncabezado.setBackground(new Color(51, 51, 51));
+        panelEncabezado.setBorder(new CompoundBorder(BorderFactory.createEtchedBorder(), new EmptyBorder(10, 10, 10, 10)));
+        panelEncabezado.add(lbEncabezado);      
         //Ajustamos Tabla
         tablaDatos = new JTable();
+        tablaDatos.setForeground(new Color(204, 204, 204));
+        tablaDatos.setBackground(new Color(70, 70, 70));
+        tablaDatos.setGridColor(new Color(102, 102, 102));
+        tablaDatos.getTableHeader().setBackground(new Color(51, 51, 51));
+        tablaDatos.getTableHeader().setForeground(new Color(204, 204, 204));
         JScrollPane scrollPaneTabla = new JScrollPane(tablaDatos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         tablaDatos.setFillsViewportHeight(true);
         configurarTabla(tablaDatos);
         //Ajustamos panelTabla        
         panelTabla.setLayout(new BorderLayout());
-        panelTabla.setBorder(BorderFactory.createEmptyBorder(6, 12, 12, 12));
+        panelTabla.setBackground(new Color(102, 102, 102));
+        panelTabla.setBorder(new CompoundBorder(new EmptyBorder(0, 10, 0, 10), BorderFactory.createTitledBorder("Estado Doctores")));
         panelTabla.add(scrollPaneTabla, BorderLayout.CENTER);
         panelTabla.add(btnEliminar, BorderLayout.SOUTH);        
         //Ajustamos panelContenidoFormulario
-        panelContenidoFormulario.setLayout(new GridLayout(5, 2));
-        panelContenidoFormulario.add(lbId);
-        panelContenidoFormulario.add(txtId);
-        panelContenidoFormulario.add(lbNombre);
-        panelContenidoFormulario.add(txtNombre);
-        panelContenidoFormulario.add(lbApellido);
-        panelContenidoFormulario.add(txtApellido);
-        panelContenidoFormulario.add(lbEdad);
-        panelContenidoFormulario.add(txtEdad);
-        panelContenidoFormulario.add(rdbDisponible);
-        panelContenidoFormulario.add(rdbNoDisponible); 
+        panelContenidoFormulario.setLayout(new GridBagLayout());
+        panelContenidoFormulario.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Formulario"), new EmptyBorder(0, 20, 0, 20)));
+        panelContenidoFormulario.setBackground(new Color(102, 102, 102));
+        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panelContenidoFormulario.add(lbId, gbc);
+        gbc.gridx = 1;
+        panelContenidoFormulario.add(txtId, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        panelContenidoFormulario.add(lbNombre, gbc);
+        gbc.gridx = 1;
+        panelContenidoFormulario.add(txtNombre, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        panelContenidoFormulario.add(lbApellido, gbc);
+        gbc.gridx = 1;
+        panelContenidoFormulario.add(txtApellido, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        panelContenidoFormulario.add(lbEdad, gbc);
+        gbc.gridx = 1;
+        panelContenidoFormulario.add(txtEdad, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 4;
+        panelContenidoFormulario.add(rdbDisponible, gbc);
+        gbc.gridx = 1;
+        panelContenidoFormulario.add(rdbNoDisponible, gbc);
+        gbc.gridx = 0;
+        gbc.gridy = 5;
+        panelContenidoFormulario.add(btnAgregar, gbc);
+        gbc.gridx = 1;
+        panelContenidoFormulario.add(btnVerExpediente, gbc);
+//        panelContenidoFormulario.add(lbId);
+//        panelContenidoFormulario.add(txtId);
+//        panelContenidoFormulario.add(lbNombre);
+//        panelContenidoFormulario.add(txtNombre);
+//        panelContenidoFormulario.add(lbApellido);
+//        panelContenidoFormulario.add(txtApellido);
+//        panelContenidoFormulario.add(lbEdad);
+//        panelContenidoFormulario.add(txtEdad);
+//        panelContenidoFormulario.add(rdbDisponible);
+//        panelContenidoFormulario.add(rdbNoDisponible); 
         //Ajustamos panelBtnAgregar
-        panelBtnAgregar.add(btnAgregar);
+        //panelBtnAgregar.add(btnAgregar);
         //Ajustamos panelFormulario
         panelFormulario.setLayout(new BorderLayout());
         panelFormulario.setBorder(BorderFactory.createEmptyBorder(60,10,8,0));
@@ -142,7 +199,7 @@ public class VentanaDoctores extends JFrame implements Observer {
         
         //Ajustamos panelPrincipal
         panelPrincipal.setLayout(new BorderLayout());
-        panelPrincipal.add(panelFormulario, BorderLayout.LINE_START);
+        panelPrincipal.add(panelContenidoFormulario, BorderLayout.LINE_START);
         panelPrincipal.add(panelEncabezado, BorderLayout.PAGE_START);
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
         

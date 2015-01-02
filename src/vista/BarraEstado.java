@@ -6,6 +6,7 @@
 
 package vista;
 
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Font;
 import javax.swing.BorderFactory;
@@ -20,8 +21,10 @@ public class BarraEstado extends JPanel{
     public BarraEstado(){
         setLayout(new FlowLayout(FlowLayout.LEFT));
         setBorder(BorderFactory.createEtchedBorder());
+        setBackground(new Color(51, 51, 51));
         lbMensaje = new JLabel("(No hay información disponible)");
         lbMensaje.setFont(TIPO_MENSAJE);
+        lbMensaje.setForeground(new Color(204, 204, 204));
         add(lbMensaje);
     }
     

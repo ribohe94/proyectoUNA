@@ -21,25 +21,21 @@ import javax.swing.JTextField;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 
-public class VentanaPacientes extends JFrame implements Observer {
+public class VentanaPacientes extends JPanel implements Observer {
 
     public VentanaPacientes(Control nuevoGestor) {
         gestorPrincipal = nuevoGestor;
         ajustarConfiguracionInicial();
-        ajustarComponentes(getContentPane());
+        ajustarComponentes();
     }
 
     private void ajustarConfiguracionInicial() {
-        setTitle("Información de personas");
-        setSize(600, 400);
-        setResizable(false);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setSize(800, 400);
 
     }
 
     GridBagConstraints gbc = new GridBagConstraints();
-    private void ajustarComponentes(Container c) {
+    private void ajustarComponentes() {
         //inicializamos barraEstado
         estado = new BarraEstado();
         //inicializamos labels
@@ -108,8 +104,8 @@ public class VentanaPacientes extends JFrame implements Observer {
         panelFormulario.add(btnAgregar, gbc);
         gbc.gridx = 1;
         panelFormulario.add(btnVerExpediente, gbc);
-        c.add(panelPrincipal);
-        c.add(estado, BorderLayout.PAGE_END);
+        this.add(panelPrincipal);
+        this.add(estado, BorderLayout.PAGE_END);
 
     }
 

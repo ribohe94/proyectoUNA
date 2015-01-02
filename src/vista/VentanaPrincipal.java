@@ -16,10 +16,21 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 
 public class VentanaPrincipal extends JFrame{
     
     public VentanaPrincipal(){
+        Control gestor = new Control();
+        ventanaDoctores = new VentanaDoctores(gestor);
+        ventanaPacientes = new VentanaPacientes(gestor);
+        ventanaCitas = new VentanaCitas(gestor);
+        tabVentana = new JTabbedPane();
+        
+        tabVentana.add("Doctores", ventanaDoctores);
+        tabVentana.add("Pacientes", ventanaPacientes);
+        tabVentana.add("Citas", ventanaCitas);
+        
         ajustarConfiguracionInicial();
         ajustarComponentes(getContentPane());
         ajustarEventos();
@@ -31,17 +42,12 @@ public class VentanaPrincipal extends JFrame{
                 cerrar();
             }
         });
-        
-        Control gestor = new Control();
-        ventanaDoctores = new VentanaDoctores(gestor);
-        ventanaPacientes = new VentanaPacientes(gestor);
-        ventanaCitas = new VentanaCitas(gestor);
     }
     
     private void ajustarConfiguracionInicial(){
         setTitle("Aplicacion Hospital");
-        setResizable(false);
-        setSize(600, 400);
+        setResizable(true);
+        setSize(800, 650);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
@@ -75,7 +81,7 @@ public class VentanaPrincipal extends JFrame{
         panelPrincipal = new JPanel();        
         panelPrincipal.add(panelContenido);
         
-        c.add(panelPrincipal);
+        c.add(tabVentana);
     }
     
     private void ajustarEventos(){
@@ -127,14 +133,18 @@ public class VentanaPrincipal extends JFrame{
     }          
 
     //ATRIBUTOS
+    //Paneles
     private JPanel panelContenido;
     private JPanel panelPrincipal;
     private JPanel panelBotones;
-    private JPanel panelEncabezado;    
-    
+    private JPanel panelEncabezado;
+    //Pestañas
+    private JTabbedPane tabVentana;
+    //Botones
     private JButton btnDoctores;
     private JButton btnPacientes;
     private JButton btnCitas;
+    //Labels
     private JLabel lbSeleccione;    
     private JLabel lbPrincipal;
     

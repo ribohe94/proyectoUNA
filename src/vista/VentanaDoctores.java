@@ -34,25 +34,21 @@ import javax.swing.event.TableModelListener;
 import modelo.Doctor;
 import modelo.Modelo;
 
-public class VentanaDoctores extends JFrame implements Observer {
+public class VentanaDoctores extends JPanel implements Observer {
 
     public VentanaDoctores(Control nuevoGestor) {
         gestorPrincipal = nuevoGestor;
         ajustarConfiguracionInicial();
-        ajustarComponentes(getContentPane());
+        ajustarComponentes();
         ajustarEventos();
     }
 
     private void ajustarConfiguracionInicial() {
-        setTitle("Información de personas");
         setSize(800, 400);
-        setResizable(true);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
     
     GridBagConstraints gbc = new GridBagConstraints();
-    private void ajustarComponentes(Container c) {        
+    private void ajustarComponentes() {        
         //GridBagConstraints gbc = new GridBagConstraints();
         estado = new BarraEstado();
         //inicializamos labels
@@ -150,52 +146,12 @@ public class VentanaDoctores extends JFrame implements Observer {
         panelContenidoFormulario.add(btnAgregar, gbc);
         gbc.gridx = 1;
         panelContenidoFormulario.add(btnVerExpediente, gbc);
-//        panelContenidoFormulario.add(lbId);
-//        panelContenidoFormulario.add(txtId);
-//        panelContenidoFormulario.add(lbNombre);
-//        panelContenidoFormulario.add(txtNombre);
-//        panelContenidoFormulario.add(lbApellido);
-//        panelContenidoFormulario.add(txtApellido);
-//        panelContenidoFormulario.add(lbEdad);
-//        panelContenidoFormulario.add(txtEdad);
-//        panelContenidoFormulario.add(rdbDisponible);
-//        panelContenidoFormulario.add(rdbNoDisponible); 
-        //Ajustamos panelBtnAgregar
-        //panelBtnAgregar.add(btnAgregar);
+
         //Ajustamos panelFormulario
         panelFormulario.setLayout(new BorderLayout());
         panelFormulario.setBorder(BorderFactory.createEmptyBorder(60,10,8,0));
         panelFormulario.add(panelContenidoFormulario, BorderLayout.NORTH);        
         panelFormulario.add(panelBtnAgregar, BorderLayout.CENTER);
-        
-        
-//        panelFormulario.setLayout(new GridBagLayout());
-//        gbc.gridx = 0;
-//        gbc.gridy = 0;
-//        panelFormulario.add(lbId, gbc);
-//        gbc.gridx = 1;
-//        panelFormulario.add(txtId, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 3;
-//        panelFormulario.add(lbNombre, gbc);
-//        gbc.gridx = 1;
-//        panelFormulario.add(txtNombre, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 1;
-//        panelFormulario.add(lbApellido, gbc);
-//        gbc.gridx = 1;
-//        panelFormulario.add(txtApellido, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 2;                
-//        panelFormulario.add(lbEdad, gbc);
-//        gbc.gridx = 1;
-//        panelFormulario.add(txtEdad, gbc);
-//        gbc.gridx = 0;
-//        gbc.gridy = 4;
-//        panelFormulario.add(btnAgregar, gbc);
-//        gbc.gridx = 1;
-//        panelFormulario.add(btnVerExpediente, gbc);
-        
         
         //Ajustamos panelPrincipal
         panelPrincipal.setLayout(new BorderLayout());
@@ -203,8 +159,8 @@ public class VentanaDoctores extends JFrame implements Observer {
         panelPrincipal.add(panelEncabezado, BorderLayout.PAGE_START);
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
         
-        c.add(panelPrincipal);
-        c.add(estado, BorderLayout.PAGE_END);
+        this.add(panelPrincipal);
+        this.add(estado, BorderLayout.PAGE_END);
     }
 
     public void configurarTabla(JTable tabla) {

@@ -27,14 +27,9 @@ public class VentanaPrincipal extends JFrame{
         ventanaCitas = new VentanaCitas(gestor);
         tabVentana = new JTabbedPane();
         
-        tabVentana.add("Doctores", ventanaDoctores);
-        tabVentana.add("Pacientes", ventanaPacientes);
-        tabVentana.add("Citas", ventanaCitas);
-        
         ajustarConfiguracionInicial();
         ajustarComponentes(getContentPane());
         ajustarEventos();
-        //pack();    
         
         addWindowListener(new WindowAdapter(){
             @Override
@@ -53,6 +48,11 @@ public class VentanaPrincipal extends JFrame{
     }
     
     private void ajustarComponentes(Container c){
+        
+        tabVentana.add("Doctores", ventanaDoctores);
+        tabVentana.add("Pacientes", ventanaPacientes);
+        tabVentana.add("Citas", ventanaCitas);
+        
         btnDoctores = new JButton("Administrar doctores");
         btnCitas = new JButton("Crear nueva cita");
         btnPacientes = new JButton("Consultar paciente");                

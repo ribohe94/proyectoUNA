@@ -2,7 +2,6 @@
 package vista;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -10,16 +9,12 @@ import controlador.Control;
 import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.BorderFactory;
 import javax.swing.ButtonGroup;
-import javax.swing.ButtonModel;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -35,14 +30,11 @@ import modelo.Doctor;
 import modelo.Modelo;
 
 public class VentanaDoctores extends JPanel implements Observer {
-
     public VentanaDoctores(Control nuevoGestor) {
         gestorPrincipal = nuevoGestor;
         ajustarConfiguracionInicial();
         ajustarComponentes();
         ajustarEventos();
-        gestorPrincipal.registrar(this);
-        gestorPrincipal.cargarDatos();
         estado.mostrarMensaje("Programa iniciado ...");
     }
 
@@ -51,10 +43,9 @@ public class VentanaDoctores extends JPanel implements Observer {
     }
     
     GridBagConstraints gbc = new GridBagConstraints();
-    private void ajustarComponentes() {        
-        //GridBagConstraints gbc = new GridBagConstraints();
+    private void ajustarComponentes() {                
         estado = new BarraEstado();
-        //inicializamos labels
+        //Inicializamos labels
         lbEncabezado = new JLabel("Use el Formulario para agregar doctores y la Tabla para editarlos o eliminarlos.");        
         lbNombre = new JLabel("Nombre: ");
         lbApellido = new JLabel("Apellido: ");
@@ -79,10 +70,8 @@ public class VentanaDoctores extends JPanel implements Observer {
         panelBtnAgregar = new JPanel();
         panelPrincipal = new JPanel();
         //inicializamos botones
-        btnAgregar = new JButton("Agregar");
-        btnVerExpediente = new JButton("Ver Expediente");
-        btnEliminar = new JButton("Eliminar");
-        //Ajustamos botones
+        btnAgregar = new JButton("Agregar");        
+        btnEliminar = new JButton("Eliminar");        
         //Inicializamos JRadioButton's
         rdbDisponible = new JRadioButton("Disponible");
         rdbDisponible.setBackground(new Color(102, 102, 102));
@@ -147,9 +136,10 @@ public class VentanaDoctores extends JPanel implements Observer {
         panelContenidoFormulario.add(rdbNoDisponible, gbc);
         gbc.gridx = 0;
         gbc.gridy = 5;
+        gbc.gridwidth = 2;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
         panelContenidoFormulario.add(btnAgregar, gbc);
-        gbc.gridx = 1;
-        panelContenidoFormulario.add(btnVerExpediente, gbc);
+
 
         //Ajustamos panelFormulario
         panelFormulario.setLayout(new BorderLayout());
@@ -170,13 +160,13 @@ public class VentanaDoctores extends JPanel implements Observer {
     public void configurarTabla(JTable tabla) {
         //En este llamado se asocia el modelo de la tabla
         // a la tabla (JTable)
-        tabla.setModel(gestorPrincipal.modeloTabla());
+        tabla.setModel(gestorPrincipal.modeloTablaDoctores());
         tabla.setAutoCreateRowSorter(false);
         tabla.getModel().addTableModelListener(new TableModelListener() {
 
             @Override
             public void tableChanged(TableModelEvent e) {
-                gestorPrincipal.actualizar(String.format("Se actualizó el regsitro: %d",
+                gestorPrincipal.actualizar(String.format("Se actualizó el registro: %d",
                         e.getFirstRow() + 1));
             }
         });
@@ -214,7 +204,7 @@ public class VentanaDoctores extends JPanel implements Observer {
 
     public void iniciar() {
         gestorPrincipal.registrar(this);
-        gestorPrincipal.cargarDatos();
+        gestorPrincipal.cargarDatosDoctores();
         estado.mostrarMensaje("Programa iniciado ...");
         setVisible(true);
     }
@@ -224,19 +214,20 @@ public class VentanaDoctores extends JPanel implements Observer {
         if(evento instanceof String){
             estado.mostrarMensaje(((String)evento));
         }else{        
-            tablaDatos.repaint();
-            String idP = ((Doctor)evento).getId();
-            String nombreP = ((Doctor)evento).getNombre();
-            String apellidoP = ((Doctor)evento).getApellido();
-        
-            if(((Modelo)modelo).buscarDoctor(idP)){
-                estado.mostrarMensaje(String.format("Se agregó al doctor: %s, %s %s", idP, nombreP, apellidoP));
-            }else{
-                estado.mostrarMensaje(String.format("Se eliminó al doctor: %s, %s %s", idP, nombreP, apellidoP));
-            }                   
+            if (evento instanceof Doctor){
+                tablaDatos.repaint();
+                String idP = ((Doctor)evento).getId();
+                String nombreP = ((Doctor)evento).getNombre();
+                String apellidoP = ((Doctor)evento).getApellido();
+                
+                if(((Modelo)modelo).buscarDoctor(idP)){
+                    estado.mostrarMensaje(String.format("Se agregó al doctor: %s, %s %s", idP, nombreP, apellidoP));
+                }else{
+                    estado.mostrarMensaje(String.format("Se eliminó al doctor: %s, %s %s", idP, nombreP, apellidoP));
+                }  
+            }                                                 
         }
     }
-
 
     //Atributo
     //Control
@@ -264,8 +255,7 @@ public class VentanaDoctores extends JPanel implements Observer {
     private JTextField txtId;
     private JTextField txtEdad;
     //Botones
-    private JButton btnAgregar;
-    private JButton btnVerExpediente;    
+    private JButton btnAgregar;     
     private JButton btnEliminar;
     //RadioButton
     private JRadioButton rdbDisponible;

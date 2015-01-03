@@ -3,7 +3,7 @@ package modelo;
 
 import java.util.ArrayList;
 
-public class ConjuntoDoctores {
+public class ConjuntoDoctores{
     public ConjuntoDoctores(){
         doctores = new ArrayList<>();
     }
@@ -20,7 +20,6 @@ public class ConjuntoDoctores {
     public Doctor eliminar(int p){
         return doctores.remove(p);
     }
-
     
     public boolean buscarDoctor(String buscarId){
         for(int i = 0; i<doctores.size(); i++){
@@ -41,7 +40,6 @@ public class ConjuntoDoctores {
     
     public void cargar(){
         agregar(new Doctor("Riccardo", "Bove", "116310708", 20, true));
-
     }
 
     //Atributos

@@ -3,35 +3,35 @@ package modelo;
 
 import javax.swing.table.AbstractTableModel;
 
-public class ModeloTablaDoctores extends AbstractTableModel {
-    public ModeloTablaDoctores(ConjuntoDoctores doctores){
-        this.doctores = doctores;        
+public class ModeloTablaPacientes extends AbstractTableModel {
+    public ModeloTablaPacientes(ConjuntoPacientes pacientes){
+        this.pacientes = pacientes;        
     }    
     
     @Override
     public int getRowCount() { 
-        int filas = doctores.numPersonas();
+        int filas = pacientes.numPersonas();
         return filas;
     }
 
     @Override
     public int getColumnCount() {
-        return Doctor.nombreCampos().length;        
+        return Paciente.nombreCampos().length;        
     }
     
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        return doctores.recuperar(rowIndex).toArray()[columnIndex];
+        return pacientes.recuperar(rowIndex).toArray()[columnIndex];
     }
     
     @Override 
     public String getColumnName(int columnIndex){
-        return Doctor.nombreCampos()[columnIndex];
+        return Paciente.nombreCampos()[columnIndex];
     }
         
     @Override 
     public void setValueAt(Object valor, int rowIndex, int columnIndex){        
-        doctores.recuperar(rowIndex).fijarAtributo(valor, columnIndex);        
+        pacientes.recuperar(rowIndex).fijarAtributo(valor, columnIndex);        
         fireTableCellUpdated(rowIndex, columnIndex);
     }
     
@@ -46,5 +46,5 @@ public class ModeloTablaDoctores extends AbstractTableModel {
     }
         
     //Atributo
-    private ConjuntoDoctores doctores;
+    private ConjuntoPacientes pacientes;
 }

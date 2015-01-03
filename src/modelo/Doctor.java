@@ -84,7 +84,6 @@ public class Doctor {
             default:
                 throw new IndexOutOfBoundsException();
         }
-
     }
     
     public static String[] nombreCampos(){

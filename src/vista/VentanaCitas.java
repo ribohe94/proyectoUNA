@@ -2,7 +2,6 @@
 package vista;
 
 import java.awt.BorderLayout;
-import java.awt.Container;
 import java.awt.FlowLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -11,8 +10,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import static javax.swing.JFrame.EXIT_ON_CLOSE;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -31,7 +28,6 @@ public class VentanaCitas extends JPanel implements Observer {
 
     private void ajustarConfiguracionInicial() {
         setSize(600, 400);
-
     }
 
     GridBagConstraints gbc = new GridBagConstraints();
@@ -112,7 +108,7 @@ public class VentanaCitas extends JPanel implements Observer {
     public void configurarTabla(JTable tabla) {
         //En este llamado se asocia el modelo de la tabla
         // a la tabla (JTable)
-        tabla.setModel(gestorPrincipal.modeloTabla());
+        tabla.setModel(gestorPrincipal.modeloTablaDoctores());
         tabla.setAutoCreateRowSorter(false);
         tabla.getModel().addTableModelListener(new TableModelListener() {
 
@@ -126,7 +122,7 @@ public class VentanaCitas extends JPanel implements Observer {
 
     public void iniciar() {
         gestorPrincipal.registrar(this);
-        gestorPrincipal.cargarDatos();
+        gestorPrincipal.cargarDatosDoctores();
         estado.mostrarMensaje("Programa iniciado ...");
         setVisible(true);
     }

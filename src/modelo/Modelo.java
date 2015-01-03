@@ -8,15 +8,26 @@ public class Modelo extends Observable{
     
     public Modelo(){
         doctores = new ConjuntoDoctores();
-        modeloTabla = new ModeloTablaDoctores(doctores);    
+        pacientes = new ConjuntoPacientes();
+        modeloTablaDoctores = new ModeloTablaDoctores(doctores);    
+        modeloTablaPacientes = new ModeloTablaPacientes(pacientes);
     }
     
-    public TableModel modeloTabla(){
-        return modeloTabla;
+    public TableModel modeloTablaDoctores(){
+        return modeloTablaDoctores;
     }
     
-    public void cargarDatos(){
+    public TableModel modeloTablaPacientes(){
+        return modeloTablaPacientes;
+    }
+    
+    public void cargarDatosDoctores(){
         doctores.cargar();
+        actualizar("Carga completada ...");
+    }
+    
+    public void cargarDatosPacientes(){
+        pacientes.cargar();
         actualizar("Carga completada ...");
     }
     
@@ -34,6 +45,20 @@ public class Modelo extends Observable{
         return doctores.buscarDoctor(id);
     }
     
+    public boolean agregarPaciente(Paciente nuevoPaciente){        
+        boolean respuesta = pacientes.agregar(nuevoPaciente);
+        actualizar(nuevoPaciente); 
+        return respuesta;       
+    }
+    
+    public void eliminarPaciente(int p){
+        actualizar(pacientes.eliminar(p));
+    }
+    
+    public boolean buscarPaciente(int cedula){
+        return pacientes.buscarPaciente(cedula);
+    }
+    
     public void actualizar(Object evento){
         setChanged();
         notifyObservers(evento);
@@ -41,5 +66,7 @@ public class Modelo extends Observable{
     
     //Atributos
     private ConjuntoDoctores doctores;
-    private ModeloTablaDoctores modeloTabla;
+    private ConjuntoPacientes pacientes;
+    private ModeloTablaDoctores modeloTablaDoctores;
+    private ModeloTablaPacientes modeloTablaPacientes;
 }

@@ -66,18 +66,20 @@ public class VentanaPacientes extends JPanel implements Observer {
         //inicializamos paneles
         panelEncabezado = new JPanel();
         panelTabla = new JPanel();        
-        panelFormulario = new JPanel();
+        //panelFormulario = new JPanel();
         panelContenidoFormulario = new JPanel();
-        panelBtnAgregar = new JPanel();
-        panelPrincipal = new JPanel();
+        panelBtnAgregar = new JPanel();        
+        panelBtnTabla = new JPanel();        
+        panelPrincipal = new JPanel();        
         //inicializamos botones
         btnAgregar = new JButton("Agregar");        
         btnEliminar = new JButton("Eliminar");        
+        btnExpediente = new JButton("Ver Expediente"); 
         //Ajustamos panelEncabezado
         panelEncabezado.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelEncabezado.setBackground(new Color(51, 51, 51));
         panelEncabezado.setBorder(new CompoundBorder(BorderFactory.createEtchedBorder(), new EmptyBorder(10, 10, 10, 10)));
-        panelEncabezado.add(lbEncabezado);      
+        panelEncabezado.add(lbEncabezado);          
         //Ajustamos Tabla
         tablaDatos = new JTable();
         tablaDatos.setForeground(new Color(204, 204, 204));
@@ -88,18 +90,30 @@ public class VentanaPacientes extends JPanel implements Observer {
         JScrollPane scrollPaneTabla = new JScrollPane(tablaDatos, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
         tablaDatos.setFillsViewportHeight(true);
         configurarTabla(tablaDatos);
+        //Ajustamos paneles de botones
+        panelBtnAgregar.setLayout(new FlowLayout(FlowLayout.CENTER));
+        panelBtnAgregar.setBackground(new Color(102, 102, 102));
+        panelBtnTabla.setLayout(new FlowLayout(FlowLayout.CENTER));    
+        //panelBtnTabla.setBackground(new Color(102, 102, 102));
+                
+        panelBtnAgregar.add(btnAgregar);        
+        panelBtnTabla.add(btnExpediente);
+        //panelBtnTabla.add(panel1);
+        
+        
         //Ajustamos panelTabla        
         panelTabla.setLayout(new BorderLayout());
         panelTabla.setBackground(new Color(102, 102, 102));
         panelTabla.setBorder(new CompoundBorder(new EmptyBorder(0, 10, 0, 10), BorderFactory.createTitledBorder("Estado Doctores")));
-        panelTabla.add(scrollPaneTabla, BorderLayout.CENTER);
+        panelTabla.add(scrollPaneTabla, BorderLayout.NORTH);                  
+        panelTabla.add(btnExpediente, BorderLayout.CENTER);        
         panelTabla.add(btnEliminar, BorderLayout.SOUTH);        
         //Ajustamos panelContenidoFormulario
         panelContenidoFormulario.setLayout(new GridBagLayout());
         panelContenidoFormulario.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Formulario"), new EmptyBorder(0, 20, 0, 20)));
         panelContenidoFormulario.setBackground(new Color(102, 102, 102));
         
-        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.insets = new Insets(5, 0, 5, 0);
         gbc.gridx = 0;
         gbc.gridy = 0;
         panelContenidoFormulario.add(lbCedula, gbc);
@@ -129,13 +143,13 @@ public class VentanaPacientes extends JPanel implements Observer {
         gbc.gridy = 5;
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        panelContenidoFormulario.add(btnAgregar, gbc);
-
-        //Ajustamos panelFormulario
-        panelFormulario.setLayout(new BorderLayout());
-        panelFormulario.setBorder(BorderFactory.createEmptyBorder(60,10,8,0));
-        panelFormulario.add(panelContenidoFormulario, BorderLayout.NORTH);        
-        panelFormulario.add(panelBtnAgregar, BorderLayout.CENTER);
+        panelContenidoFormulario.add(panelBtnAgregar, gbc);
+//
+//        //Ajustamos panelFormulario
+//        panelFormulario.setLayout(new BorderLayout());
+//        panelFormulario.setBorder(BorderFactory.createEmptyBorder(60,10,8,0));
+//        panelFormulario.add(panelContenidoFormulario, BorderLayout.NORTH);        
+//        panelFormulario.add(panelBtnTabla, BorderLayout.CENTER);
         
         //Ajustamos panelPrincipal
         panelPrincipal.setLayout(new BorderLayout());
@@ -229,9 +243,10 @@ public class VentanaPacientes extends JPanel implements Observer {
     private JPanel panelPrincipal;
     private JPanel panelEncabezado;
     private JPanel panelTabla;    
-    private JPanel panelFormulario;
+    //private JPanel panelFormulario;
     private JPanel panelContenidoFormulario;
     private JPanel panelBtnAgregar;
+    private JPanel panelBtnTabla;     
     //JLabel
     private JLabel lbEncabezado;    
     private JLabel lbNombre;
@@ -248,4 +263,5 @@ public class VentanaPacientes extends JPanel implements Observer {
     //Botones
     private JButton btnAgregar;     
     private JButton btnEliminar;
+    private JButton btnExpediente;
 }

@@ -2,6 +2,7 @@
 package controlador;
 import java.util.Observer;
 import javax.swing.table.TableModel;
+import modelo.Cita;
 import modelo.Doctor;
 import modelo.Modelo;
 import modelo.Paciente;
@@ -50,6 +51,22 @@ public class Control {
      
      public void eliminarPaciente(int p){
          datos.eliminarPaciente(p);
+     }
+     
+     public boolean buscarPaciente(int cedula){
+         return datos.buscarPaciente(cedula);
+     }
+     
+     public boolean buscarDoctor(String id){
+         return datos.buscarDoctor(id);
+     }
+     
+     public boolean disponibilidadDoctor(String id){
+        return datos.disponibilidadDoctor(id);
+    }
+     
+     public void asignarCita(Cita nuevaCita){
+         datos.asignarCita(nuevaCita);
      }
      
      public void actualizar(Object evento){

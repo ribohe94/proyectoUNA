@@ -30,6 +30,15 @@ public class ConjuntoDoctores{
         return false;
     }
     
+    public boolean doctorDisponible(String id){
+        for(int i = 0; i<doctores.size(); i++){
+            if(doctores.get(i).getId().compareTo(id) == 0){
+                return doctores.get(i).getDisponible();
+            }            
+        }        
+        return false;
+    }
+    
     public Doctor recuperar(int p){
         return doctores.get(p);
     }

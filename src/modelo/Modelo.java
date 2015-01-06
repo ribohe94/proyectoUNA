@@ -45,6 +45,10 @@ public class Modelo extends Observable{
         return doctores.buscarDoctor(id);
     }
     
+    public boolean disponibilidadDoctor(String id){
+        return doctores.doctorDisponible(id);
+    }
+    
     public boolean agregarPaciente(Paciente nuevoPaciente){        
         boolean respuesta = pacientes.agregar(nuevoPaciente);
         actualizar(nuevoPaciente); 
@@ -57,6 +61,10 @@ public class Modelo extends Observable{
     
     public boolean buscarPaciente(int cedula){
         return pacientes.buscarPaciente(cedula);
+    }
+    
+    public void asignarCita(Cita nuevaCita){
+        actualizar(nuevaCita);
     }
     
     public void actualizar(Object evento){

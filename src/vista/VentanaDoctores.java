@@ -64,16 +64,14 @@ public class VentanaDoctores extends JPanel implements Observer {
         txtEdad = new JTextField(10);
         //inicializamos paneles
         panelEncabezado = new JPanel();
-        panelTabla = new JPanel();        
-        panelFormulario = new JPanel();
-        panelContenidoFormulario = new JPanel();
-        panelBtnAgregar = new JPanel();
+        panelTabla = new JPanel();                
+        panelContenidoFormulario = new JPanel();        
         panelPrincipal = new JPanel();
         //inicializamos botones
         btnAgregar = new JButton("Agregar");        
         btnEliminar = new JButton("Eliminar");        
         //Inicializamos JRadioButton's
-        rdbDisponible = new JRadioButton("Disponible");
+        rdbDisponible = new JRadioButton("Disponible");        
         rdbDisponible.setBackground(new Color(102, 102, 102));
         rdbDisponible.setForeground(new Color(204, 204, 204));
         rdbNoDisponible = new JRadioButton("No Disponible");
@@ -82,6 +80,7 @@ public class VentanaDoctores extends JPanel implements Observer {
         grupoRadioButton = new ButtonGroup();
         grupoRadioButton.add(rdbDisponible);
         grupoRadioButton.add(rdbNoDisponible);
+        rdbDisponible.setEnabled(true);
         //Ajustamos panelEncabezado
         panelEncabezado.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelEncabezado.setBackground(new Color(51, 51, 51));
@@ -108,7 +107,7 @@ public class VentanaDoctores extends JPanel implements Observer {
         panelContenidoFormulario.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Formulario"), new EmptyBorder(0, 20, 0, 20)));
         panelContenidoFormulario.setBackground(new Color(102, 102, 102));
         
-        gbc.insets = new Insets(10, 0, 10, 0);
+        gbc.insets = new Insets(5, 0, 5, 0);
         gbc.gridx = 0;
         gbc.gridy = 0;
         panelContenidoFormulario.add(lbId, gbc);
@@ -139,13 +138,6 @@ public class VentanaDoctores extends JPanel implements Observer {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelContenidoFormulario.add(btnAgregar, gbc);
-
-
-        //Ajustamos panelFormulario
-        panelFormulario.setLayout(new BorderLayout());
-        panelFormulario.setBorder(BorderFactory.createEmptyBorder(60,10,8,0));
-        panelFormulario.add(panelContenidoFormulario, BorderLayout.NORTH);        
-        panelFormulario.add(panelBtnAgregar, BorderLayout.CENTER);
         
         //Ajustamos panelPrincipal
         panelPrincipal.setLayout(new BorderLayout());
@@ -239,10 +231,8 @@ public class VentanaDoctores extends JPanel implements Observer {
     //JPanel
     private JPanel panelPrincipal;
     private JPanel panelEncabezado;
-    private JPanel panelTabla;    
-    private JPanel panelFormulario;
-    private JPanel panelContenidoFormulario;
-    private JPanel panelBtnAgregar;
+    private JPanel panelTabla;        
+    private JPanel panelContenidoFormulario;    
     //JLabel
     private JLabel lbEncabezado;    
     private JLabel lbNombre;

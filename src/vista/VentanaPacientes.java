@@ -1,4 +1,3 @@
-
 package vista;
 
 import java.awt.BorderLayout;
@@ -28,23 +27,25 @@ import modelo.Modelo;
 import modelo.Paciente;
 
 public class VentanaPacientes extends JPanel implements Observer {
+
     public VentanaPacientes(Control nuevoGestor) {
         gestorPrincipal = nuevoGestor;
         ajustarConfiguracionInicial();
         ajustarComponentes();
-        ajustarEventos();        
+        ajustarEventos();
         estado.mostrarMensaje("Programa iniciado ...");
     }
 
     private void ajustarConfiguracionInicial() {
         setSize(800, 400);
     }
-    
+
     GridBagConstraints gbc = new GridBagConstraints();
-    private void ajustarComponentes() {                
+
+    private void ajustarComponentes() {
         estado = new BarraEstado();
         //Inicializamos labels
-        lbEncabezado = new JLabel("Use el Formulario para agregar pacientes y la Tabla para editarlos o eliminarlos.");        
+        lbEncabezado = new JLabel("Use el Formulario para agregar pacientes y la Tabla para editarlos o eliminarlos.");
         lbNombre = new JLabel("Nombre: ");
         lbApellidos = new JLabel("Apellidos: ");
         lbCedula = new JLabel("Identificacion: ");
@@ -65,21 +66,22 @@ public class VentanaPacientes extends JPanel implements Observer {
         txtPeso = new JTextField(10);
         //inicializamos paneles
         panelEncabezado = new JPanel();
-        panelTabla = new JPanel();        
+        panelTabla = new JPanel();
+        panelSubBtn = new JPanel();
         //panelFormulario = new JPanel();
         panelContenidoFormulario = new JPanel();
-        panelBtnAgregar = new JPanel();        
-        panelBtnTabla = new JPanel();        
-        panelPrincipal = new JPanel();        
+        panelBtnAgregar = new JPanel();
+        panelBtnTabla = new JPanel();
+        panelPrincipal = new JPanel();
         //inicializamos botones
-        btnAgregar = new JButton("Agregar");        
-        btnEliminar = new JButton("Eliminar");        
-        btnExpediente = new JButton("Ver Expediente"); 
+        btnAgregar = new JButton("Agregar");
+        btnEliminar = new JButton("Eliminar");
+        btnExpediente = new JButton("Ver Expediente");
         //Ajustamos panelEncabezado
         panelEncabezado.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelEncabezado.setBackground(new Color(51, 51, 51));
         panelEncabezado.setBorder(new CompoundBorder(BorderFactory.createEtchedBorder(), new EmptyBorder(10, 10, 10, 10)));
-        panelEncabezado.add(lbEncabezado);          
+        panelEncabezado.add(lbEncabezado);
         //Ajustamos Tabla
         tablaDatos = new JTable();
         tablaDatos.setForeground(new Color(204, 204, 204));
@@ -93,26 +95,40 @@ public class VentanaPacientes extends JPanel implements Observer {
         //Ajustamos paneles de botones
         panelBtnAgregar.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelBtnAgregar.setBackground(new Color(102, 102, 102));
-        panelBtnTabla.setLayout(new FlowLayout(FlowLayout.CENTER));    
+        panelBtnTabla.setLayout(new FlowLayout(FlowLayout.CENTER));
         //panelBtnTabla.setBackground(new Color(102, 102, 102));
-                
-        panelBtnAgregar.add(btnAgregar);        
+
+        panelBtnAgregar.add(btnAgregar);
         panelBtnTabla.add(btnExpediente);
         //panelBtnTabla.add(panel1);
-        
-        
+
         //Ajustamos panelTabla        
-        panelTabla.setLayout(new BorderLayout());
+        panelTabla.setLayout(new GridBagLayout());
         panelTabla.setBackground(new Color(102, 102, 102));
         panelTabla.setBorder(new CompoundBorder(new EmptyBorder(0, 10, 0, 10), BorderFactory.createTitledBorder("Estado Doctores")));
-        panelTabla.add(scrollPaneTabla, BorderLayout.NORTH);                  
-        panelTabla.add(btnExpediente, BorderLayout.CENTER);        
-        panelTabla.add(btnEliminar, BorderLayout.SOUTH);        
+
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panelTabla.add(scrollPaneTabla, gbc);
+
+        panelSubBtn.setLayout(new GridBagLayout());
+//        panelSubBtn.setBorder(BorderFactory.createLineBorder(Color.red));
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        panelSubBtn.add(btnExpediente, gbc);
+        gbc.gridx = 1;
+        panelSubBtn.add(btnEliminar, gbc);
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        panelTabla.add(panelSubBtn, gbc);
         //Ajustamos panelContenidoFormulario
         panelContenidoFormulario.setLayout(new GridBagLayout());
         panelContenidoFormulario.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Formulario"), new EmptyBorder(0, 20, 0, 20)));
         panelContenidoFormulario.setBackground(new Color(102, 102, 102));
-        
+
         gbc.insets = new Insets(5, 0, 5, 0);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -144,21 +160,20 @@ public class VentanaPacientes extends JPanel implements Observer {
         gbc.gridwidth = 2;
         gbc.fill = GridBagConstraints.HORIZONTAL;
         panelContenidoFormulario.add(panelBtnAgregar, gbc);
-//
-//        //Ajustamos panelFormulario
-//        panelFormulario.setLayout(new BorderLayout());
-//        panelFormulario.setBorder(BorderFactory.createEmptyBorder(60,10,8,0));
-//        panelFormulario.add(panelContenidoFormulario, BorderLayout.NORTH);        
-//        panelFormulario.add(panelBtnTabla, BorderLayout.CENTER);
-        
+
         //Ajustamos panelPrincipal
         panelPrincipal.setLayout(new BorderLayout());
         panelPrincipal.add(panelContenidoFormulario, BorderLayout.LINE_START);
         panelPrincipal.add(panelEncabezado, BorderLayout.PAGE_START);
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
-        
-        this.add(panelPrincipal);
-        this.add(estado, BorderLayout.PAGE_END);
+
+        this.setLayout(new GridBagLayout());
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(panelPrincipal, gbc);
+        gbc.gridy = 1;
+        this.add(estado, gbc);
     }
 
     public void configurarTabla(JTable tabla) {
@@ -174,11 +189,11 @@ public class VentanaPacientes extends JPanel implements Observer {
             }
         });
     }
-    
-    private void ajustarEventos(){
+
+    private void ajustarEventos() {
         btnAgregar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 int cedula = Integer.parseInt(txtCedula.getText());
                 String nombre = txtNombre.getText();
                 String apellidos = txtApellidos.getText();
@@ -186,22 +201,22 @@ public class VentanaPacientes extends JPanel implements Observer {
                 float peso = Float.parseFloat(txtPeso.getText());
 
                 Paciente nuevoPaciente = new Paciente(cedula, nombre, apellidos, edad, peso);
-                                
-                if(!gestorPrincipal.agregarPaciente(nuevoPaciente)){                    
-                    JOptionPane.showMessageDialog(null, "Ya existe esta persona en el registro.", null, JOptionPane.ERROR_MESSAGE);        
+
+                if (!gestorPrincipal.agregarPaciente(nuevoPaciente)) {
+                    JOptionPane.showMessageDialog(null, "Ya existe esta persona en el registro.", null, JOptionPane.ERROR_MESSAGE);
                 }
                 tablaDatos.repaint();
                 estado.repaint();
             }
         });
-                
+
         btnEliminar.addActionListener(new ActionListener() {
 
             @Override
-            public void actionPerformed(ActionEvent e) {               
-                gestorPrincipal.eliminarPaciente(tablaDatos.getSelectedRow());                        
+            public void actionPerformed(ActionEvent e) {
+                gestorPrincipal.eliminarPaciente(tablaDatos.getSelectedRow());
             }
-        });  
+        });
         tablaDatos.repaint();
     }
 
@@ -211,24 +226,24 @@ public class VentanaPacientes extends JPanel implements Observer {
         estado.mostrarMensaje("Programa iniciado ...");
         setVisible(true);
     }
-    
+
     @Override
-    public void update(Observable modelo, Object evento) {   
-        if(evento instanceof String){
-            estado.mostrarMensaje(((String)evento));
-        }else{        
-            if(evento instanceof Paciente){
+    public void update(Observable modelo, Object evento) {
+        if (evento instanceof String) {
+            estado.mostrarMensaje(((String) evento));
+        } else {
+            if (evento instanceof Paciente) {
                 tablaDatos.repaint();
-                int cedulaP = ((Paciente)evento).getCedula();
-                String nombreP = ((Paciente)evento).getNombre();
-                String apellidosP = ((Paciente)evento).getApellidos();
-                
-                if(((Modelo)modelo).buscarPaciente(cedulaP)){
+                int cedulaP = ((Paciente) evento).getCedula();
+                String nombreP = ((Paciente) evento).getNombre();
+                String apellidosP = ((Paciente) evento).getApellidos();
+
+                if (((Modelo) modelo).buscarPaciente(cedulaP)) {
                     estado.mostrarMensaje(String.format("Se agregó al paciente: %s, %s %s", cedulaP, nombreP, apellidosP));
-                }else{
+                } else {
                     estado.mostrarMensaje(String.format("Se eliminó al paciente: %s, %s %s", cedulaP, nombreP, apellidosP));
-                }    
-            }                                              
+                }
+            }
         }
     }
 
@@ -242,13 +257,14 @@ public class VentanaPacientes extends JPanel implements Observer {
     //JPanel
     private JPanel panelPrincipal;
     private JPanel panelEncabezado;
-    private JPanel panelTabla;    
+    private JPanel panelTabla;
     //private JPanel panelFormulario;
     private JPanel panelContenidoFormulario;
     private JPanel panelBtnAgregar;
-    private JPanel panelBtnTabla;     
+    private JPanel panelBtnTabla;
+    private JPanel panelSubBtn;
     //JLabel
-    private JLabel lbEncabezado;    
+    private JLabel lbEncabezado;
     private JLabel lbNombre;
     private JLabel lbApellidos;
     private JLabel lbCedula;
@@ -261,7 +277,7 @@ public class VentanaPacientes extends JPanel implements Observer {
     private JTextField txtEdad;
     private JTextField txtPeso;
     //Botones
-    private JButton btnAgregar;     
+    private JButton btnAgregar;
     private JButton btnEliminar;
     private JButton btnExpediente;
 }

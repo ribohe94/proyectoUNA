@@ -145,8 +145,13 @@ public class VentanaDoctores extends JPanel implements Observer {
         panelPrincipal.add(panelEncabezado, BorderLayout.PAGE_START);
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
         
-        this.add(panelPrincipal);
-        this.add(estado, BorderLayout.PAGE_END);
+        this.setLayout(new GridBagLayout());
+        gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        this.add(panelPrincipal, gbc);
+        gbc.gridy = 1;
+        this.add(estado, gbc);
     }
 
     public void configurarTabla(JTable tabla) {

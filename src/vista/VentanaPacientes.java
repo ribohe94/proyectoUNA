@@ -194,11 +194,44 @@ public class VentanaPacientes extends JPanel implements Observer {
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int cedula = Integer.parseInt(txtCedula.getText());
-                String nombre = txtNombre.getText();
-                String apellidos = txtApellidos.getText();
-                int edad = Integer.parseInt(txtEdad.getText());
-                float peso = Float.parseFloat(txtPeso.getText());
+                int cedula, edad;
+                String nombre, apellidos;
+                float peso;
+                try {
+                    cedula = Integer.parseInt(txtCedula.getText());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "El numero de identificacion ingresado no es válido.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    nombre = txtNombre.getText();
+                    System.out.println(nombre);
+                    if(nombre == ""){
+                        JOptionPane.showMessageDialog(null, "El nombre ingresado no es válido.", null, JOptionPane.ERROR_MESSAGE);
+                        return;
+                    }
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "El nombre ingresado no es válido.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    apellidos = txtApellidos.getText();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Los apellidos ingresados no son válidos.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    edad = Integer.parseInt(txtEdad.getText());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "La edad ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    peso = Float.parseFloat(txtPeso.getText());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "El peso ingresado no es válido.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
                 Paciente nuevoPaciente = new Paciente(cedula, nombre, apellidos, edad, peso);
 

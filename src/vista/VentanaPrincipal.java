@@ -48,7 +48,6 @@ public class VentanaPrincipal extends JFrame{
         
         c.add(tabVentana);
     }
-
     
     public void iniciar(){
         setVisible(true);

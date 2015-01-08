@@ -192,6 +192,8 @@ public class VentanaCitas extends JPanel implements Observer {
         setBackground(new Color(102, 102, 102));
         setLayout(new GridBagLayout());
         gbc.insets = new Insets(0, 0, 0, 0);
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.VERTICAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
         add(panelPrincipal, gbc);

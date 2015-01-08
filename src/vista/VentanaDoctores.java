@@ -7,6 +7,7 @@ import java.util.Observable;
 import java.util.Observer;
 import controlador.Control;
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -70,6 +71,8 @@ public class VentanaDoctores extends JPanel implements Observer {
         //inicializamos botones
         btnAgregar = new JButton("Agregar");        
         btnEliminar = new JButton("Eliminar");        
+        //Ajustamos botones
+        
         //Inicializamos JRadioButton's
         rdbDisponible = new JRadioButton("Disponible");        
         rdbDisponible.setBackground(new Color(102, 102, 102));
@@ -173,11 +176,39 @@ public class VentanaDoctores extends JPanel implements Observer {
         btnAgregar.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e){
-                String id = txtId.getText();
-                String nombre = txtNombre.getText();
-                String apellido = txtApellido.getText();
-                int edad = Integer.parseInt(txtEdad.getText());
-                boolean disponible = rdbDisponible.isSelected();
+                String id, nombre, apellido;
+                int edad;
+                boolean disponible;
+                try {
+                    id = txtId.getText();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "El numero de identificacion ingresado no es válido.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    nombre = txtNombre.getText();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "El nombre ingresado no es válido.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    apellido = txtApellido.getText();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "El apellido ingresado no es válido.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    edad = Integer.parseInt(txtEdad.getText());
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "La edad ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+                try {
+                    disponible = rdbDisponible.isSelected();
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(null, "Seleccione un estado de disponibilidad.", null, JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
 
                 Doctor nuevoDoctor = new Doctor(nombre, apellido, id, edad, disponible);
                                 

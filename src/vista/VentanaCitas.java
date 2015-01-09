@@ -62,8 +62,6 @@ public class VentanaCitas extends JPanel implements Observer {
         lbIdDoctor.setForeground(new Color(204, 204, 204));
         //Inicializamos TXT
         txtFecha = new JTextField(8);
-        txtHora = new JTextField(8);
-        txtMinutos = new JTextField(8);
         txtCedulaPaciente = new JTextField(8);
         txtIdDoctor = new JTextField(8);
         //Inicializamos Botones
@@ -245,7 +243,7 @@ public class VentanaCitas extends JPanel implements Observer {
                 try {
                     dia = Integer.parseInt(cmbDia.getSelectedItem().toString());
                     System.out.println(dia);
-                } catch (Exception ex) {
+                } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "La Fecha ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -259,7 +257,7 @@ public class VentanaCitas extends JPanel implements Observer {
                 try {
                     agno = Integer.parseInt(cmbAgno.getSelectedItem().toString());
                     System.out.println(agno);
-                } catch (Exception ex) {
+                } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "La Fecha ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -273,13 +271,13 @@ public class VentanaCitas extends JPanel implements Observer {
                 try {
                     minutos = Integer.parseInt(cmbMinutos.getSelectedItem().toString());
                     System.out.println(minutos);
-                } catch (Exception ex) {
+                } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "Los Minutos ingresados no son válidos.", null, JOptionPane.ERROR_MESSAGE);
                     return;
                 }
                 try {
                     cedula = Integer.parseInt(txtCedulaPaciente.getText());
-                } catch (Exception ex) {
+                } catch (NumberFormatException ex) {
                     JOptionPane.showMessageDialog(null, "La Cédula ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
                     return;
                 }
@@ -345,8 +343,6 @@ public class VentanaCitas extends JPanel implements Observer {
     private JLabel lbIdDoctor;
     //TXT
     private JTextField txtFecha;
-    private JTextField txtHora;
-    private JTextField txtMinutos;
     private JTextField txtCedulaPaciente;
     private JTextField txtIdDoctor;
     //Botones

@@ -4,13 +4,9 @@ package modelo;
 import java.util.ArrayList;
 
 public class Expediente {
-    public Expediente(Paciente nuevoPaciente){
-        paciente = nuevoPaciente;
+    public Expediente(int nuevaCedula){
+        cedulaPaciente = nuevaCedula;
         examenes = new ArrayList<>();
-    }
-    
-    public Paciente getPaciente(){
-        return paciente;
     }
     
     public void agregarExamen(String nuevoExamen){               
@@ -18,15 +14,15 @@ public class Expediente {
     }
     
     public int getCedulaPaciente(){
-        return paciente.getCedula();
+        return cedulaPaciente;
     }
     
     @Override
     public String toString(){
-        return String.format(paciente.getCedula() + ", " + paciente.getApellidos() + ", " + paciente.getNombre() + "." + "%n" + examenes.toString());        
+        return String.format("Paciente : " + cedulaPaciente + "%n" + examenes.toString());        
     }
     
     //Atributos
-    private Paciente paciente;
+    private int cedulaPaciente;
     private ArrayList<String> examenes;
 }

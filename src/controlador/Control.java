@@ -46,7 +46,13 @@ public class Control {
      }
      
      public boolean agregarPaciente(Paciente nuevoPaciente){
-         return datos.agregarPaciente(nuevoPaciente);
+         //return datos.agregarPaciente(nuevoPaciente);
+         if(datos.agregarPaciente(nuevoPaciente)){
+             datos.agregarExpediente(nuevoPaciente.getCedula());
+             return true;
+         }else{
+             return false;
+         }                  
      }
      
      public void eliminarPaciente(int p){
@@ -67,7 +73,11 @@ public class Control {
      
      public void asignarCita(Cita nuevaCita){
          datos.asignarCita(nuevaCita);
-     }
+     }          
+     
+     public String getExamenes(int cedulaPaciente){
+        return datos.getExamenes(cedulaPaciente);
+    }
      
      public void actualizar(Object evento){
          datos.actualizar(evento);

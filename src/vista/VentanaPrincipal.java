@@ -17,11 +17,13 @@ public class VentanaPrincipal extends JFrame{
         ventanaPacientes = new VentanaPacientes(gestor);
         ventanaCitas = new VentanaCitas(gestor);
         ventanaExamen = new VentanaExamen(gestor);
+        ventanaExpedientes = new VentanaExpedientes(gestor);
         tabVentana = new JTabbedPane();
         
         ventanaDoctores.iniciar();
         ventanaPacientes.iniciar();
         ventanaCitas.iniciar();
+        ventanaExpedientes.iniciar();
         
         ajustarConfiguracionInicial();
         ajustarComponentes(getContentPane());        
@@ -47,6 +49,7 @@ public class VentanaPrincipal extends JFrame{
         tabVentana.add("Pacientes", ventanaPacientes);        
         tabVentana.add("Examenes", ventanaExamen);
         tabVentana.add("Citas", ventanaCitas);        
+        tabVentana.add("Expedientes", ventanaExpedientes);        
         
         c.add(tabVentana);
     }
@@ -56,7 +59,7 @@ public class VentanaPrincipal extends JFrame{
     }
     
     public void cerrar(){
-        if(JOptionPane.showConfirmDialog(this, "¿Desea salir de la aplicación?", null, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
+        if(JOptionPane.showConfirmDialog(null, "¿Desea salir de la aplicación?", null, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
            System.exit(0);
         }
     }      
@@ -74,4 +77,5 @@ public class VentanaPrincipal extends JFrame{
     private VentanaCitas ventanaCitas;
     private VentanaPacientes ventanaPacientes;
     private VentanaExamen ventanaExamen;
+    private VentanaExpedientes ventanaExpedientes;
 }

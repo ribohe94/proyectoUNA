@@ -180,20 +180,14 @@ public class VentanaCitas extends JPanel implements Observer {
         panelEncabezado.setBackground(new Color(51, 51, 51));
         panelEncabezado.setBorder(new CompoundBorder(BorderFactory.createEtchedBorder(), new EmptyBorder(10, 10, 10, 10)));
         //Ajustamos panelPrincipal     
-        panelPrincipal.setBorder(BorderFactory.createEtchedBorder());
         panelPrincipal.add(panelEncabezado, BorderLayout.NORTH);
         panelPrincipal.add(panelFormulario, BorderLayout.CENTER);
         panelPrincipal.add(estado, BorderLayout.SOUTH);
 
         //Ajustamos Tgis
         setBackground(new Color(102, 102, 102));
-        setLayout(new GridBagLayout());
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.fill = GridBagConstraints.VERTICAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(panelPrincipal, gbc);
+        setLayout(new BorderLayout());
+        add(panelPrincipal, BorderLayout.CENTER);
     }
 
     private void ajustarEventos() {

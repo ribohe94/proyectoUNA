@@ -102,16 +102,12 @@ public class VentanaPacientes extends JPanel implements Observer {
         //panelBtnTabla.add(panel1);
 
         //Ajustamos panelTabla        
-        panelTabla.setLayout(new GridBagLayout());
+        panelTabla.setLayout(new BorderLayout());
         panelTabla.setBackground(new Color(102, 102, 102));
         panelTabla.setBorder(new CompoundBorder(new EmptyBorder(0, 10, 0, 10), BorderFactory.createTitledBorder("Estado Doctores")));
-
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        panelTabla.add(scrollPaneTabla, gbc);
+        panelTabla.add(scrollPaneTabla, BorderLayout.CENTER);
 
         panelSubBtn.setLayout(new GridBagLayout());
-//        panelSubBtn.setBorder(BorderFactory.createLineBorder(Color.red));
         gbc.fill = GridBagConstraints.HORIZONTAL;
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -122,7 +118,7 @@ public class VentanaPacientes extends JPanel implements Observer {
         gbc.gridx = 0;
         gbc.gridy = 1;
         gbc.fill = GridBagConstraints.HORIZONTAL;
-        panelTabla.add(panelSubBtn, gbc);
+        panelTabla.add(panelSubBtn, BorderLayout.SOUTH);
         //Ajustamos panelContenidoFormulario
         panelContenidoFormulario.setLayout(new GridBagLayout());
         panelContenidoFormulario.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Formulario"), new EmptyBorder(0, 20, 0, 20)));
@@ -165,15 +161,11 @@ public class VentanaPacientes extends JPanel implements Observer {
         panelPrincipal.add(panelContenidoFormulario, BorderLayout.LINE_START);
         panelPrincipal.add(panelEncabezado, BorderLayout.PAGE_START);
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
+        panelPrincipal.add(estado, BorderLayout.SOUTH);
 
-        this.setLayout(new GridBagLayout());
+        this.setLayout(new BorderLayout());
         this.setBackground(new Color(102, 102, 102));
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        this.add(panelPrincipal, gbc);
-        gbc.gridy = 1;
-        this.add(estado, gbc);
+        this.add(panelPrincipal, BorderLayout.CENTER);
     }
 
     public void configurarTabla(JTable tabla) {

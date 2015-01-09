@@ -40,7 +40,7 @@ public class VentanaDoctores extends JPanel implements Observer {
     }
 
     private void ajustarConfiguracionInicial() {
-        setSize(800, 400);
+//        setSize(800, 400);
     }
     
     GridBagConstraints gbc = new GridBagConstraints();
@@ -147,15 +147,11 @@ public class VentanaDoctores extends JPanel implements Observer {
         panelPrincipal.add(panelContenidoFormulario, BorderLayout.LINE_START);
         panelPrincipal.add(panelEncabezado, BorderLayout.PAGE_START);
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
+        panelPrincipal.add(estado, BorderLayout.SOUTH);
         
-        this.setLayout(new GridBagLayout());
+        this.setLayout(new BorderLayout());
         this.setBackground(new Color(102, 102, 102));
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        this.add(panelPrincipal, gbc);
-        gbc.gridy = 1;
-        this.add(estado, gbc);
+        this.add(panelPrincipal, BorderLayout.CENTER);
     }
 
     public void configurarTabla(JTable tabla) {

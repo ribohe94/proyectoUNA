@@ -73,7 +73,7 @@ public class VentanaExamen extends JPanel {
         //Ajustamos panelEncabezado
         panelEncabezado.add(lbEncabezado);
         panelEncabezado.setBackground(new Color(51, 51, 51));
-        panelEncabezado.setBorder(new CompoundBorder(BorderFactory.createEtchedBorder(), new EmptyBorder(10, 10, 10, 10)));
+        panelEncabezado.setBorder(BorderFactory.createEtchedBorder());
         //Ajustamos panelSangre
         panelSangre.setBackground(new Color(102, 102, 102));
         panelSangre.setPreferredSize(new Dimension(750, 500));
@@ -110,24 +110,19 @@ public class VentanaExamen extends JPanel {
         gbc.gridy = 5;
         panelSangre.add(btnAgregar, gbc);
         
-        panelPrincipalSangre.setLayout(new GridBagLayout());
-        gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
-        gbc.gridx = 0;
-        gbc.gridy = 0;
+        panelPrincipalSangre.setLayout(new BorderLayout());
         panelPrincipalSangre.setBackground(new Color(102, 102, 102));
-        panelPrincipalSangre.add(panelEncabezado, gbc);
-        gbc.gridy = 1;
-        panelPrincipalSangre.add(panelSangre, gbc);
-        gbc.gridy = 2;
-        panelPrincipalSangre.add(estado, gbc);
+        panelPrincipalSangre.add(panelEncabezado, BorderLayout.NORTH);
+        panelPrincipalSangre.add(panelSangre, BorderLayout.CENTER);
+        panelPrincipalSangre.add(estado, BorderLayout.SOUTH);
 
         //Ajustamos tabPanel
         tabPanel.add("Sangre", panelPrincipalSangre);
 
         //Ajustamos this
         this.setBackground(new Color(102, 102, 102));
-        this.add(tabPanel);
+        setLayout(new BorderLayout());
+        this.add(tabPanel, BorderLayout.CENTER);
     }
 
     //Atributos

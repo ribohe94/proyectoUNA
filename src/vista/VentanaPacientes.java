@@ -95,12 +95,10 @@ public class VentanaPacientes extends JPanel implements Observer {
         //Ajustamos paneles de botones
         panelBtnAgregar.setLayout(new FlowLayout(FlowLayout.CENTER));
         panelBtnAgregar.setBackground(new Color(102, 102, 102));
-        panelBtnTabla.setLayout(new FlowLayout(FlowLayout.CENTER));
-        //panelBtnTabla.setBackground(new Color(102, 102, 102));
+        panelBtnTabla.setLayout(new FlowLayout(FlowLayout.CENTER));        ;
 
         panelBtnAgregar.add(btnAgregar);
-        panelBtnTabla.add(btnExpediente);
-        //panelBtnTabla.add(panel1);
+        panelBtnTabla.add(btnExpediente);        
 
         //Ajustamos panelTabla        
         panelTabla.setLayout(new GridBagLayout());

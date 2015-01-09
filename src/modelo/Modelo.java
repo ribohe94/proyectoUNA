@@ -9,6 +9,7 @@ public class Modelo extends Observable{
     public Modelo(){
         doctores = new ConjuntoDoctores();
         pacientes = new ConjuntoPacientes();
+        expedientes = new ConjuntoExpedientes();
         modeloTablaDoctores = new ModeloTablaDoctores(doctores);    
         modeloTablaPacientes = new ModeloTablaPacientes(pacientes);
     }
@@ -67,6 +68,14 @@ public class Modelo extends Observable{
         actualizar(nuevaCita);
     }
     
+    public void agregarExpediente(int cedulaPaciente){
+        expedientes.agregar(new Expediente(cedulaPaciente));
+    }
+    
+    public String getExamenes(int cedulaPaciente){
+        return expedientes.getExpediente(cedulaPaciente).toString();
+    }
+    
     public void actualizar(Object evento){
         setChanged();
         notifyObservers(evento);
@@ -75,6 +84,7 @@ public class Modelo extends Observable{
     //Atributos
     private ConjuntoDoctores doctores;
     private ConjuntoPacientes pacientes;
+    private ConjuntoExpedientes expedientes;
     private ModeloTablaDoctores modeloTablaDoctores;
     private ModeloTablaPacientes modeloTablaPacientes;
 }

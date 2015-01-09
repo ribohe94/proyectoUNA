@@ -68,7 +68,6 @@ public class VentanaPacientes extends JPanel implements Observer {
         panelEncabezado = new JPanel();
         panelTabla = new JPanel();
         panelSubBtn = new JPanel();
-        //panelFormulario = new JPanel();
         panelContenidoFormulario = new JPanel();
         panelBtnAgregar = new JPanel();
         panelBtnTabla = new JPanel();
@@ -168,6 +167,7 @@ public class VentanaPacientes extends JPanel implements Observer {
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
 
         this.setLayout(new GridBagLayout());
+        this.setBackground(new Color(102, 102, 102));
         gbc.insets = new Insets(0, 0, 0, 0);
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -291,7 +291,6 @@ public class VentanaPacientes extends JPanel implements Observer {
     private JPanel panelPrincipal;
     private JPanel panelEncabezado;
     private JPanel panelTabla;
-    //private JPanel panelFormulario;
     private JPanel panelContenidoFormulario;
     private JPanel panelBtnAgregar;
     private JPanel panelBtnTabla;

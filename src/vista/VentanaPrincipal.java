@@ -16,6 +16,7 @@ public class VentanaPrincipal extends JFrame{
         ventanaDoctores = new VentanaDoctores(gestor);
         ventanaPacientes = new VentanaPacientes(gestor);
         ventanaCitas = new VentanaCitas(gestor);
+        ventanaExamen = new VentanaExamen(gestor);
         tabVentana = new JTabbedPane();
         
         ventanaDoctores.iniciar();
@@ -36,14 +37,15 @@ public class VentanaPrincipal extends JFrame{
     private void ajustarConfiguracionInicial(){
         setTitle("Aplicacion Hospital");
         setResizable(true);
-        setSize(800, 650);
+        setSize(800, 750);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
     
     private void ajustarComponentes(Container c){        
         tabVentana.add("Doctores", ventanaDoctores);
-        tabVentana.add("Pacientes", ventanaPacientes);
+        tabVentana.add("Pacientes", ventanaPacientes);        
+        tabVentana.add("Examenes", ventanaExamen);
         tabVentana.add("Citas", ventanaCitas);        
         
         c.add(tabVentana);
@@ -71,4 +73,5 @@ public class VentanaPrincipal extends JFrame{
     private VentanaDoctores ventanaDoctores;
     private VentanaCitas ventanaCitas;
     private VentanaPacientes ventanaPacientes;
+    private VentanaExamen ventanaExamen;
 }

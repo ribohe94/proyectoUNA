@@ -149,6 +149,7 @@ public class VentanaDoctores extends JPanel implements Observer {
         panelPrincipal.add(panelTabla, BorderLayout.CENTER);
         
         this.setLayout(new GridBagLayout());
+        this.setBackground(new Color(102, 102, 102));
         gbc.insets = new Insets(0, 0, 0, 0);
         gbc.gridx = 0;
         gbc.gridy = 0;

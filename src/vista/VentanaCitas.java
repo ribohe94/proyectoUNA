@@ -8,7 +8,6 @@ import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -24,8 +23,6 @@ import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import modelo.Cita;
-import modelo.Doctor;
-import modelo.Modelo;
 
 public class VentanaCitas extends JPanel implements Observer {
 

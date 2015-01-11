@@ -24,7 +24,6 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import modelo.Expediente;
 
 public class VentanaExamen extends JPanel implements Observer{
 
@@ -304,6 +303,8 @@ public class VentanaExamen extends JPanel implements Observer{
         panelSangre.setPreferredSize(new Dimension(WIDTH, 900));
         panelSangre.setBorder(new CompoundBorder(new EmptyBorder(10, 50, 10, 50), BorderFactory.createTitledBorder("Formulario de Examenes")));
         JScrollPane scrollPaneTabla = new JScrollPane(panelSangre, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        
+        
 
         panelPrincipalSangre.setLayout(new BorderLayout());
         panelPrincipalSangre.setPreferredSize(new Dimension(WIDTH, 800));
@@ -324,13 +325,9 @@ public class VentanaExamen extends JPanel implements Observer{
     //Ajusta los eventos de la ventana
     private void ajustarEventos() {
         btnAgregar.addActionListener(new ActionListener() {
-
             @Override
             public void actionPerformed(ActionEvent e) {
                 int cedula = cedulas.get(cmbCedula.getSelectedIndex());
-                //Expediente expediente = new Expediente(cedulas.get(cmbCedula.getSelectedIndex()));
-//                System.out.println(cedulas.get(cmbCedula.getSelectedIndex()) + lbHematocrito.getText());               
-                
                 //Examen Sangre                
                 if(!txtHematocrito.getText().isEmpty() || !txtHemoglobina.getText().isEmpty() || !txtLeucocitos.getText().isEmpty() || !txtSegmentados.getText().isEmpty() || !txtLinfocitos.getText().isEmpty() ){
                     String examenSangre = String.format( "Examen de Sangre.\n" +
@@ -387,37 +384,13 @@ public class VentanaExamen extends JPanel implements Observer{
                     //Se agrega el examen
                     gestorPrincipal.addExamen(examenAlergias, cedula);
                 }
-                
-//                expediente.agregarExamen(String.format(lbHematocrito.getText() + txtHematocrito.getText()
-//                        + lbHemoglobina.getText() + txtHemoglobina.getText() + "%n"
-//                        + lbLeucocitos.getText() + txtLeucocitos.getText() + "%n"
-//                        + lbSegmentados.getText() + txtSegmentados.getText() + "%n"
-//                        + lbLinfocitos.getText() + txtLinfocitos.getText() + "%n"
-//                        + lbECG.getText() + txtECG.getText() + "%n"
-//                        + lbInterPR.getText() + txtInterPR.getText() + "%n"
-//                        + lbAlteracionesST.getText() + txtAlteracionesST.getText() + "%n"
-//                        + lbFrecuencia.getText() + txtFrecuencia.getText() + "%n"
-//                        + lbEjeCorazon.getText() + txtEjeCorazon.getText() + "\n"
-//                        + lbFracturas.getText() + txtFracturas.getText() + "%n"
-//                        + lbInfarto.getText() + txtInfarto.getText() + "%n"
-//                        + lbCalcificacion.getText() + txtCalcificacion.getText() + "%n"
-//                        + lbHemorragia.getText() + txtHemorragia.getText() + "%n"
-//                        + lbTrauma.getText() + txtTrauma.getText() + "%n"
-//                        + lbProtuberancia.getText() + txtProtuberancia.getText() + "%n"
-//                        + lbAneurisma.getText() + txtAneurisma.getText() + "%n"
-//                        + lbEstenosis.getText() + txtEstenosis.getText() + "%n"
-//                        + lbHuevo.getText() + txtHuevo.getText() + "%n"
-//                        + lbLeche.getText() + txtLeche.getText() + "%n"
-//                        + lbNueces.getText() + txtNueces.getText() + "%n"
-//                        + lbMariscos.getText() + txtMariscos.getText() + "%n"));
-//                gestorPrincipal.addExamen(expediente);
             }
         });
     }
 
     @Override
     public void update(Observable o, Object arg) {
-        estado.mostrarMensaje("Examen Agregado" + arg);
+        estado.mostrarMensaje("" + arg);
     }
 
     //Atributos

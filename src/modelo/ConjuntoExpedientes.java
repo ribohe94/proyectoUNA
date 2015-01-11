@@ -33,7 +33,10 @@ public class ConjuntoExpedientes{
     //Carga expedientes de prueba
     public void cargar(){
         agregar(new Expediente(9013429));        
-        //Agregar examenes de prueba
+        agregar(new Expediente(9013428));    
+        agregar(new Expediente(9013427));    
+        agregar(new Expediente(9013425));    
+        agregar(new Expediente(9013422));    
     }    
 
     //Atributos

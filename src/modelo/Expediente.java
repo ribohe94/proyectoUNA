@@ -23,7 +23,13 @@ public class Expediente {
     //Devuelve todos los examenes del expediente
     @Override
     public String toString(){              
-        return examenes.toString();     
+        //return examenes.toString();             
+        String r = "";
+        for(int i = 0; i < examenes.size(); i++){
+            r += examenes.get(i);
+            r += String.format("%n");
+        }
+        return r;
     }
     
     //Atributos

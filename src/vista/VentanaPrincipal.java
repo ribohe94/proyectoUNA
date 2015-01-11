@@ -13,6 +13,8 @@ public class VentanaPrincipal extends JFrame{
     
     public VentanaPrincipal(){
         Control gestor = new Control();
+        gestor.cargarDatosPacientes();
+        gestor.cargarDatosDoctores();
         ventanaDoctores = new VentanaDoctores(gestor);
         ventanaPacientes = new VentanaPacientes(gestor);
         ventanaCitas = new VentanaCitas(gestor);

@@ -60,8 +60,16 @@ public class Modelo extends Observable{
         actualizar(pacientes.eliminar(p));
     }
     
+    public int numPacientes(){
+        return pacientes.numPersonas();
+    }
+    
     public boolean buscarPaciente(int cedula){
         return pacientes.buscarPaciente(cedula);
+    }
+    
+    public Paciente recuperarPaciente(int p){
+        return pacientes.recuperar(p);
     }
     
     public void asignarCita(Cita nuevaCita){
@@ -70,6 +78,10 @@ public class Modelo extends Observable{
     
     public void agregarExpediente(int cedulaPaciente){
         expedientes.agregar(new Expediente(cedulaPaciente));
+    }
+    
+    public void addExpediente(Expediente ex){
+        expedientes.agregar(ex);
     }
     
     public String getExamenes(int cedulaPaciente){

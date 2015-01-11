@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
-import modelo.Cita;
 
 public class VentanaExpedientes extends JPanel implements Observer {
 
@@ -92,19 +91,15 @@ public class VentanaExpedientes extends JPanel implements Observer {
         gbc.gridwidth = 2;
         gbc.anchor = GridBagConstraints.CENTER;
         panelInfo.add(btnBuscarCedula, gbc);
-        //Ajustamos panelPrincipal     
-        panelPrincipal.setBorder(BorderFactory.createEtchedBorder());
+        //Ajustamos panelPrincipal
         panelPrincipal.add(panelEncabezado, BorderLayout.NORTH);
         panelPrincipal.add(panelInfo, BorderLayout.CENTER);
         panelPrincipal.add(estado, BorderLayout.SOUTH);
 
         //Ajustamos Tgis
+        this.setLayout(new BorderLayout());
         setBackground(new Color(102, 102, 102));
-        setLayout(new GridBagLayout());
-        gbc.insets = new Insets(0, 0, 0, 0);
-        gbc.gridx = 0;
-        gbc.gridy = 0;
-        add(panelPrincipal, gbc);
+        add(panelPrincipal, BorderLayout.CENTER);
     }
 
     private void ajustarEventos() {

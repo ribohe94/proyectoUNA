@@ -40,6 +40,10 @@ public class ConjuntoPacientes{
     
     public void cargar(){
         agregar(new Paciente(9013429, "Esteban", "Mercado Hernández", 20, 60));        
+        agregar(new Paciente(9013428, "Esteban", "Mercado Hernández", 20, 60));        
+        agregar(new Paciente(9013427, "Esteban", "Mercado Hernández", 20, 60));        
+        agregar(new Paciente(9013425, "Esteban", "Mercado Hernández", 20, 60));        
+        agregar(new Paciente(9013422, "Esteban", "Mercado Hernández", 20, 60));        
     }
 
     //Atributos

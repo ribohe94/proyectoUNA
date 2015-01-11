@@ -20,6 +20,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
@@ -45,7 +46,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
         //Inicializamos paneles
         panelPrincipal = new JPanel(new BorderLayout());
         panelEncabezado = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        panelInfo =  new JPanel(new GridBagLayout());        
+        panelInfo = new JPanel(new GridBagLayout());
         panelExpediente = new JPanel(new GridBagLayout());
         panelFormularioExamen = new JPanel(new GridBagLayout());
         //Inicializamos JLabel        
@@ -56,7 +57,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
         //Ajustamos labels
         lbEncabezado.setForeground(new Color(204, 204, 204));
         //Inicializamos TXT        
-        txtCedulaPaciente = new JTextField(8);        
+        txtCedulaPaciente = new JTextField(8);
         //Inicializamos Botones
         btnBuscarCedula = new JButton("Buscar Cedula");
         btnAgregarExamen = new JButton("Agregar Examen");
@@ -74,11 +75,8 @@ public class VentanaExpedientes extends JPanel implements Observer {
         //Ajustamos panelFormularioExamen
         panelFormularioExamen.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Formulario para Exámenes"), new EmptyBorder(0, 20, 0, 20)));
         panelFormularioExamen.setBackground(new Color(102, 102, 102));
-        
 
         //AGREGAR COMPONENTES
-        
-        
         gbc.insets = new Insets(5, 0, 5, 0);
         //Ajustamos panelEncabezado
         panelEncabezado.add(lbEncabezado);
@@ -86,12 +84,12 @@ public class VentanaExpedientes extends JPanel implements Observer {
         panelEncabezado.setBorder(new CompoundBorder(BorderFactory.createEtchedBorder(), new EmptyBorder(10, 10, 10, 10)));
         //Ajustamos panelInfo             
         panelInfo.setBackground(new Color(102, 102, 102));
-        panelInfo.setPreferredSize(new Dimension(750, 500));   
+        panelInfo.setPreferredSize(new Dimension(750, 500));
         panelInfo.setBorder(new CompoundBorder(new EmptyBorder(100, 100, 100, 100), BorderFactory.createTitledBorder("Consulta de expedientes")));
         gbc.insets = new Insets(5, 0, 5, 0);
         gbc.anchor = GridBagConstraints.WEST;
         gbc.gridx = 0;
-        gbc.gridy = 0;        
+        gbc.gridy = 0;
         //gbc.gridwidth = 2;
         panelInfo.add(lbCedulaPaciente, gbc);
         gbc.gridx = 1;
@@ -113,18 +111,18 @@ public class VentanaExpedientes extends JPanel implements Observer {
     }
 
     private void ajustarEventos() {
-        btnBuscarCedula.addActionListener(new ActionListener(){
+        btnBuscarCedula.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 int cedula;
-                try{
+                try {
                     cedula = cedulas.get(cmbCedula.getSelectedIndex());
-                }catch(NumberFormatException exc){
+                } catch (NumberFormatException exc) {
                     JOptionPane.showMessageDialog(null, "La Cédula ingresada no es válida.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
-                if(gestorPrincipal.buscarPaciente(cedula)){
+
+                if (gestorPrincipal.buscarPaciente(cedula)) {
                     lbCedulaExpediente.setText("Cédula del Paciente : " + cedula);
                     lbListaExamenes.setText("Listado de Exámenes del Paciente. %n" + gestorPrincipal.getExamenes(cedula));
                     gbc.gridx = 0;
@@ -133,34 +131,34 @@ public class VentanaExpedientes extends JPanel implements Observer {
                     gbc.gridy = 1;
                     gbc.gridwidth = 3;
                     panelExpediente.add(lbListaExamenes, gbc);
-                    
+
                     //Remueve el panel original de la ventana y coloca 2 más para mostrar la información
                     //de los examenes y el formulario para agregar examenes
                     panelPrincipal.remove(panelInfo);
                     panelPrincipal.add(panelExpediente, BorderLayout.CENTER);
                     panelPrincipal.add(panelFormularioExamen, BorderLayout.EAST);
-                    
-                }else{
+
+                } else {
                     JOptionPane.showMessageDialog(null, "No existe un expediente con éste número de cédula.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-                
+
             }
         });
-        
-        btnAgregarExamen.addActionListener(new ActionListener(){
+
+        btnAgregarExamen.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e){
+            public void actionPerformed(ActionEvent e) {
                 //AGREGA EL EXAMEN
-                
+
                 //Regresa los paneles originales a la ventana
                 panelPrincipal.remove(panelFormularioExamen);
                 panelPrincipal.remove(panelExpediente);
                 panelPrincipal.add(panelInfo, BorderLayout.CENTER);
             }
-            
+
         });
-      
+
     }
 
     public void iniciar() {
@@ -184,6 +182,8 @@ public class VentanaExpedientes extends JPanel implements Observer {
     private JPanel panelInfo;
     private JPanel panelExpediente;
     private JPanel panelFormularioExamen;
+    /*JTabbedPane*/
+    private JTabbedPane tabPaneles;
     //JLabel
     private JLabel lbEncabezado;
     private JLabel lbCedulaPaciente;

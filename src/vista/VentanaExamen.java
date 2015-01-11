@@ -16,6 +16,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -28,10 +30,11 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import modelo.Expediente;
 
-public class VentanaExamen extends JPanel {
+public class VentanaExamen extends JPanel implements Observer{
 
     public VentanaExamen(Control nuevoGestor) {
         gestorPrincipal = nuevoGestor;
+        gestorPrincipal.registrar(this);
         ajustarConfigInic();
         ajustarComponentes();
         ajustarEventos();
@@ -110,13 +113,6 @@ public class VentanaExamen extends JPanel {
         lbLeche = new JLabel("Leche: ");
         lbNueces = new JLabel("Nueces: ");
         lbMariscos = new JLabel("Mariscos: ");
-        //Ajustamos Labels
-//        lbSangre.setForeground(clrLetraLabels);
-//        lbElectroCardio.setForeground(clrLetraLabels);
-//        lbTAC.setForeground(clrLetraLabels);
-//        lbMRA.setForeground(clrLetraLabels);
-//        lbAlergia.setForeground(clrLetraLabels);
-//        lbElectroCardio.setForeground(clrLetraLabels);
 
         lbHematocrito.setForeground(clrLetraLabels);
         lbHemoglobina.setForeground(clrLetraLabels);
@@ -360,6 +356,11 @@ public class VentanaExamen extends JPanel {
                 gestorPrincipal.addExpediente(expediente);
             }
         });
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        estado.mostrarMensaje("Examen Agregado" + arg);
     }
 
     //Atributos

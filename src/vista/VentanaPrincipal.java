@@ -2,6 +2,7 @@
 package vista;
     
 import controlador.Control;
+import java.awt.Color;
 import java.awt.Container;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -20,6 +21,7 @@ public class VentanaPrincipal extends JFrame{
         ventanaCitas = new VentanaCitas(gestor);
         ventanaExamen = new VentanaExamen(gestor);
         ventanaExpedientes = new VentanaExpedientes(gestor);
+        tabExamenExp = new TabExamenExp(gestor);
         tabVentana = new JTabbedPane();
         
         ventanaDoctores.iniciar();
@@ -47,11 +49,17 @@ public class VentanaPrincipal extends JFrame{
     }
     
     private void ajustarComponentes(Container c){        
+        
+        tabVentana.setBackground(new Color(150, 150, 150));
+        
         tabVentana.add("Doctores", ventanaDoctores);
-        tabVentana.add("Pacientes", ventanaPacientes);        
-        tabVentana.add("Examenes", ventanaExamen);
+        tabVentana.add("Pacientes", ventanaPacientes);
         tabVentana.add("Citas", ventanaCitas);        
-        tabVentana.add("Expedientes", ventanaExpedientes);        
+        tabVentana.add("Expedientes/Examenes", tabExamenExp);
+        tabVentana.getSelectedComponent().setBackground(new Color(100, 100, 100));
+        tabVentana.getSelectedComponent().setForeground(new Color(100, 100, 100));
+        
+        
         
         c.add(tabVentana);
     }
@@ -80,4 +88,5 @@ public class VentanaPrincipal extends JFrame{
     private VentanaPacientes ventanaPacientes;
     private VentanaExamen ventanaExamen;
     private VentanaExpedientes ventanaExpedientes;
+    private TabExamenExp tabExamenExp;
 }

@@ -64,6 +64,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
         //Inicializamos Botones
         btnBuscarCedula = new JButton("Buscar Cedula");
         btnAgregarExamen = new JButton("Agregar Examen");
+        btnRegresar = new JButton("Regresar");
         //Inicializamos JCMB
         cmbCedula = new JComboBox();
         cedulas = new LinkedList<>();
@@ -135,6 +136,8 @@ public class VentanaExpedientes extends JPanel implements Observer {
                     gbc.gridy = 1;
                     gbc.gridwidth = 3;
                     panelExpediente.add(lbListaExamenes, gbc);
+                    gbc.gridy = 2;
+                    panelExpediente.add(btnRegresar, gbc);
 
                     //Remueve el panel original de la ventana y coloca 2 más para mostrar la información
                     //de los examenes y el formulario para agregar examenes
@@ -161,6 +164,17 @@ public class VentanaExpedientes extends JPanel implements Observer {
                 panelPrincipal.add(panelInfo, BorderLayout.CENTER);
             }
 
+        });
+
+        btnRegresar.addActionListener(new ActionListener() {
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                panelPrincipal.remove(panelExpediente);
+                panelExpediente.removeAll();
+                panelPrincipal.add(panelInfo, BorderLayout.CENTER);
+                panelPrincipal.add(panelFormularioExamen, BorderLayout.EAST);
+            }
         });
 
     }
@@ -200,6 +214,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
     //Botones
     private JButton btnBuscarCedula;
     private JButton btnAgregarExamen;
+    private JButton btnRegresar;
     //CMB
     private JComboBox cmbCedula;
     private List<Integer> cedulas;

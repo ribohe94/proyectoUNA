@@ -135,20 +135,22 @@ public class VentanaExpedientes extends JPanel implements Observer {
                 }
 
                 if (gestorPrincipal.buscarPaciente(cedula)) {
-                    lbCedulaExpediente.setText("Cédula del Paciente : " + cedula);                                   
-//                    lbListaExamenes.setText(String.format("Listado de Exámenes del Paciente. %n%s", gestorPrincipal.getExamenes(cedula)));                    
-                    txtaListaExamenes.setText(String.format("Listado de Exámenes del Paciente. %n%s", gestorPrincipal.getExamenes(cedula)));                    
+                    lbCedulaExpediente.setText("Cédula del Paciente : " + cedula);
+//                  lbListaExamenes.setText(String.format("Listado de Exámenes del Paciente. %n%s", gestorPrincipal.getExamenes(cedula)));                    
+                    txtaListaExamenes.setText(String.format("Listado de Exámenes del Paciente. %n%s", gestorPrincipal.getExamenes(cedula)));
+                    lbListaExamenes.setText(String.format("Listado de Exámenes del Paciente. %n%s", gestorPrincipal.getExamenes(cedula)));
                     gbc.gridx = 0;
                     gbc.gridy = 0;
                     panelExpediente.add(lbCedulaExpediente, gbc);
                     gbc.gridy = 1;
                     gbc.gridwidth = 3;
 //                    gbc.gridheight = 9;
-//                    gbc.fill = GridBagConstraints.VERTICAL;                    
+//                    gbc.fill = GridBagConstraints.VERTICAL;
 //                    panelExpediente.add(lbListaExamenes, gbc);
                     panelExpediente.add(txtaListaExamenes, gbc);
                     gbc.gridy = 2;
                     panelExpediente.add(btnRegresar, gbc);
+                    panelExpediente.add(lbListaExamenes, gbc);
 
                     //Remueve el panel original de la ventana y coloca 2 más para mostrar la información
                     //de los examenes y el formulario para agregar examenes

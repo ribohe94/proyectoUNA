@@ -77,11 +77,14 @@ public class Modelo extends Observable{
     }
     
     public void agregarExpediente(int cedulaPaciente){
-        expedientes.agregar(new Expediente(cedulaPaciente));
+        Expediente expediente = new Expediente(cedulaPaciente);
+        expedientes.agregar(expediente);
+        actualizar(expediente);
     }
     
     public void addExpediente(Expediente ex){
         expedientes.agregar(ex);
+        actualizar(ex);
     }
     
     public String getExamenes(int cedulaPaciente){

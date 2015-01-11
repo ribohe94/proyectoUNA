@@ -18,7 +18,7 @@ public class ConjuntoExpedientes{
                 return expedientes.get(i);
             }
         }
-        return new Expediente(1);   //No sucederá por la validación anteriormente creada
+        return new Expediente(0);   //No sucederá por la validación anteriormente creada
     }
     
     public Expediente eliminar(int p){

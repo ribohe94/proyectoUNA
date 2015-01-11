@@ -336,58 +336,30 @@ public class VentanaExamen extends JPanel {
 //                System.out.println(cedulas.get(cmbCedula.getSelectedIndex()) + lbHematocrito.getText());
                 
                 expediente.agregarExamen((lbHematocrito.getText() + txtHematocrito.getText()
-                        + lbHemoglobina.getText() + txtHemoglobina.getText()
-                        + lbLeucocitos.getText() + txtLeucocitos.getText()
-                        + lbSegmentados.getText() + txtSegmentados.getText()
-                        + lbLinfocitos.getText() + txtLinfocitos.getText()
-                        + lbECG.getText() + txtECG.getText()
-                        + lbInterPR.getText() + txtInterPR.getText()
-                        + lbAlteracionesST.getText() + txtAlteracionesST.getText()
-                        + lbFrecuencia.getText() + txtFrecuencia.getText()
-                        + lbEjeCorazon.getText() + txtEjeCorazon.getText()
-                        + lbFracturas.getText() + txtFracturas.getText()
-                        + lbInfarto.getText() + txtInfarto.getText()
-                        + lbCalcificacion.getText() + txtCalcificacion.getText()
-                        + lbHemorragia.getText() + txtHemorragia.getText()
-                        + lbTrauma.getText() + txtTrauma.getText()
-                        + lbProtuberancia.getText() + txtProtuberancia.getText()
-                        + lbAneurisma.getText() + txtAneurisma.getText()
-                        + lbEstenosis.getText() + txtEstenosis.getText()
-                        + lbHuevo.getText() + txtHuevo.getText()
-                        + lbLeche.getText() + txtLeche.getText()
-                        + lbNueces.getText() + txtNueces.getText()
-                        + lbMariscos.getText() + txtMariscos.getText()));
+                        + lbHemoglobina.getText() + txtHemoglobina.getText() + "\n"
+                        + lbLeucocitos.getText() + txtLeucocitos.getText() + "\n"
+                        + lbSegmentados.getText() + txtSegmentados.getText() + "\n"
+                        + lbLinfocitos.getText() + txtLinfocitos.getText() + "\n"
+                        + lbECG.getText() + txtECG.getText() + "\n"
+                        + lbInterPR.getText() + txtInterPR.getText() + "\n"
+                        + lbAlteracionesST.getText() + txtAlteracionesST.getText() + "\n"
+                        + lbFrecuencia.getText() + txtFrecuencia.getText() + "\n"
+                        + lbEjeCorazon.getText() + txtEjeCorazon.getText() + "\n"
+                        + lbFracturas.getText() + txtFracturas.getText() + "\n"
+                        + lbInfarto.getText() + txtInfarto.getText() + "\n"
+                        + lbCalcificacion.getText() + txtCalcificacion.getText() + "\n"
+                        + lbHemorragia.getText() + txtHemorragia.getText() + "\n"
+                        + lbTrauma.getText() + txtTrauma.getText() + "\n"
+                        + lbProtuberancia.getText() + txtProtuberancia.getText() + "\n"
+                        + lbAneurisma.getText() + txtAneurisma.getText() + "\n"
+                        + lbEstenosis.getText() + txtEstenosis.getText() + "\n"
+                        + lbHuevo.getText() + txtHuevo.getText() + "\n"
+                        + lbLeche.getText() + txtLeche.getText() + "\n"
+                        + lbNueces.getText() + txtNueces.getText() + "\n"
+                        + lbMariscos.getText() + txtMariscos.getText() + "\n"));
                 gestorPrincipal.addExpediente(expediente);
             }
         });
-        /*
-        
-         txt;
-         txt;
-         txtLinfocitos;
-
-         txt;
-         txt;
-         txt;
-         txt;
-         txt;
-
-         txt;
-         txt;
-         txt;
-         txt;
-         txt;
-
-         txt;
-         txt;
-         txt;
-
-         txt;
-         txt;
-         txt;
-         txt;
-        
-         */
     }
 
     //Atributos

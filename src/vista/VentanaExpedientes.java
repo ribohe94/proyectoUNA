@@ -11,9 +11,12 @@ import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Observable;
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -43,7 +46,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
         panelPrincipal = new JPanel(new BorderLayout());
         panelEncabezado = new JPanel(new FlowLayout(FlowLayout.CENTER));
         panelInfo =  new JPanel(new GridBagLayout());        
-        panelExpediente = new JPanel(new BorderLayout());
+        panelExpediente = new JPanel(new GridBagLayout());
         panelFormularioExamen = new JPanel(new GridBagLayout());
         //Inicializamos JLabel        
         lbEncabezado = new JLabel("Digite el número de cedula del paciente.");
@@ -57,6 +60,13 @@ public class VentanaExpedientes extends JPanel implements Observer {
         //Inicializamos Botones
         btnBuscarCedula = new JButton("Buscar Cedula");
         btnAgregarExamen = new JButton("Agregar Examen");
+        //Inicializamos JCMB
+        cmbCedula = new JComboBox();
+        cedulas = new LinkedList<>();
+        for (int i = 0; i < gestorPrincipal.numPacientes(); i++) {
+            cedulas.add(gestorPrincipal.recuperarPaciente(i).getCedula());
+            cmbCedula.addItem(gestorPrincipal.recuperarPaciente(i).getCedula());
+        }
         //Ajustamos panelExpediente
         panelExpediente.setBorder(new CompoundBorder(BorderFactory.createTitledBorder("Listado de Exámenes"), new EmptyBorder(0, 20, 0, 20)));
         panelExpediente.setBackground(new Color(102, 102, 102));
@@ -85,7 +95,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
         //gbc.gridwidth = 2;
         panelInfo.add(lbCedulaPaciente, gbc);
         gbc.gridx = 1;
-        panelInfo.add(txtCedulaPaciente, gbc);
+        panelInfo.add(cmbCedula, gbc);
         gbc.gridx = 0;
         gbc.gridy = 3;
         gbc.gridwidth = 2;
@@ -108,7 +118,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
             public void actionPerformed(ActionEvent e){
                 int cedula;
                 try{
-                    cedula = Integer.parseInt(txtCedulaPaciente.getText());
+                    cedula = cedulas.get(cmbCedula.getSelectedIndex());
                 }catch(NumberFormatException exc){
                     JOptionPane.showMessageDialog(null, "La Cédula ingresada no es válida.", "ERROR", JOptionPane.ERROR_MESSAGE);
                     return;
@@ -161,17 +171,6 @@ public class VentanaExpedientes extends JPanel implements Observer {
 
     @Override
     public void update(Observable modelo, Object evento) {
-//        if (evento instanceof String) {
-//            estado.mostrarMensaje(((String) evento));
-//        } else {
-//            if (evento instanceof Cita) {
-//                String fechaC = ((Cita) evento).getFecha();
-//                int cedulaC = ((Cita) evento).getCedula();
-//                String idC = ((Cita) evento).getId();
-//
-//                estado.mostrarMensaje(String.format("Se asignó la cita: %s, %d, %s", fechaC, cedulaC, idC));
-//            }
-//        }
     }
 
     //Atributos
@@ -195,4 +194,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
     //Botones
     private JButton btnBuscarCedula;
     private JButton btnAgregarExamen;
+    //CMB
+    private JComboBox cmbCedula;
+    private List<Integer> cedulas;
 }

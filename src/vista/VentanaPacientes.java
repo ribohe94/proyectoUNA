@@ -26,6 +26,7 @@ import javax.swing.event.TableModelListener;
 import modelo.Modelo;
 import modelo.Paciente;
 
+    //Clase que define, ajusta y muestra la ventana de Pacientes
 public class VentanaPacientes extends JPanel implements Observer {
 
     public VentanaPacientes(Control nuevoGestor) {
@@ -36,12 +37,14 @@ public class VentanaPacientes extends JPanel implements Observer {
         estado.mostrarMensaje("Programa iniciado ...");
     }
 
+    //Ajusta la configuración básica de la ventana
     private void ajustarConfiguracionInicial() {
         setSize(800, 400);
     }
 
     GridBagConstraints gbc = new GridBagConstraints();
 
+    //Ajusta los componentes de la ventana
     private void ajustarComponentes() {
         estado = new BarraEstado();
         //Inicializamos labels
@@ -166,6 +169,7 @@ public class VentanaPacientes extends JPanel implements Observer {
         this.add(panelPrincipal, BorderLayout.CENTER);
     }
 
+    //Configura la tabla de los pacientes
     public void configurarTabla(JTable tabla) {
         //En este llamado se asocia el modelo de la tabla
         // a la tabla (JTable)
@@ -180,6 +184,7 @@ public class VentanaPacientes extends JPanel implements Observer {
         });
     }
 
+    //Ajusta los eventos de la ventana
     private void ajustarEventos() {
         btnAgregar.addActionListener(new ActionListener() {
             @Override
@@ -243,6 +248,7 @@ public class VentanaPacientes extends JPanel implements Observer {
         tablaDatos.repaint();
     }
 
+    //Inicia la ventana
     public void iniciar() {
         gestorPrincipal.registrar(this);
         gestorPrincipal.cargarDatosPacientes();
@@ -250,6 +256,8 @@ public class VentanaPacientes extends JPanel implements Observer {
         setVisible(true);
     }
 
+    
+    //Actualiza la información proveniente del modelo
     @Override
     public void update(Observable modelo, Object evento) {
         if (evento instanceof String) {

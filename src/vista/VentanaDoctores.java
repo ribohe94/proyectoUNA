@@ -7,7 +7,6 @@ import java.util.Observable;
 import java.util.Observer;
 import controlador.Control;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -30,6 +29,7 @@ import javax.swing.event.TableModelListener;
 import modelo.Doctor;
 import modelo.Modelo;
 
+    //Clase que define, ajusta y muestra la ventana de Doctores
 public class VentanaDoctores extends JPanel implements Observer {
     public VentanaDoctores(Control nuevoGestor) {
         gestorPrincipal = nuevoGestor;
@@ -39,11 +39,14 @@ public class VentanaDoctores extends JPanel implements Observer {
         estado.mostrarMensaje("Programa iniciado ...");
     }
 
+    //Ajusta la configuración básica de la ventana
     private void ajustarConfiguracionInicial() {
 //        setSize(800, 400);
     }
     
     GridBagConstraints gbc = new GridBagConstraints();
+    
+    //Ajusta los componentes de la ventana
     private void ajustarComponentes() {                
         estado = new BarraEstado();
         //Inicializamos labels
@@ -153,7 +156,8 @@ public class VentanaDoctores extends JPanel implements Observer {
         this.setBackground(new Color(102, 102, 102));
         this.add(panelPrincipal, BorderLayout.CENTER);
     }
-
+    
+    //Configura la tabla de Doctores
     public void configurarTabla(JTable tabla) {
         //En este llamado se asocia el modelo de la tabla
         // a la tabla (JTable)
@@ -169,6 +173,7 @@ public class VentanaDoctores extends JPanel implements Observer {
         });
     }
     
+    //Ajusta los eventos de la ventana
     private void ajustarEventos(){
         btnAgregar.addActionListener(new ActionListener() {
             @Override
@@ -227,6 +232,7 @@ public class VentanaDoctores extends JPanel implements Observer {
         tablaDatos.repaint();
     }
 
+    //Inicia la ventana
     public void iniciar() {
         gestorPrincipal.registrar(this);
         gestorPrincipal.cargarDatosDoctores();
@@ -234,6 +240,7 @@ public class VentanaDoctores extends JPanel implements Observer {
         setVisible(true);
     }
     
+    //Actualiza la información proveniente del modelo
     @Override
     public void update(Observable modelo, Object evento) {   
         if(evento instanceof String){

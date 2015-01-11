@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package vista;
 
@@ -13,10 +8,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-/**
- *
- * @author Bove
- */
+    //Clase que define atributos y métodos de la barra de estado
 public class BarraEstado extends JPanel{
     public BarraEstado(){
         setLayout(new FlowLayout(FlowLayout.LEFT));
@@ -28,11 +20,10 @@ public class BarraEstado extends JPanel{
         add(lbMensaje);
     }
     
-    
+    //Muestra un mensaje por la barra de estado
     public void mostrarMensaje(String mensaje){
         lbMensaje.setText(mensaje);
-    }
-    
+    }    
     
     //Atributos
     private JLabel lbMensaje;

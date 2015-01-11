@@ -1,6 +1,7 @@
 
 package modelo;
 
+    //Clase que define atributos y métodos de los Pacientes
 public class Paciente {
     public Paciente(int cedula, String nombre, String apellidos, int edad, float peso){
         this.cedula = cedula;
@@ -10,46 +11,57 @@ public class Paciente {
         this.peso = peso;
     }
     
+    //Devuelve la edad del paciente
     public int getEdad(){
         return edad;
     }
     
+    //Ajusta la edad del paciente
     public void setEdad(int edad){
         this.edad = edad;
     }
     
+    //Devuelve el peso del paciente
     public float getPeso(){
         return peso;
     }
     
+    //Ajusta el peso del paciente
     public void setPeso(float peso){
         this.peso = peso;
     }
     
+    //Devuelve el nombre del paciente
     public String getNombre(){
         return nombre;
     }
     
+    //Ajusta el nombre del paciente
     public void setNombre(String nombre){
         this.nombre = nombre;
     }
     
+    //Devuelve los apellidos del paciente
     public String getApellidos(){
         return apellidos;
     }
     
+    //Ajusta los apellidos del paciente
     public void setApellidos(String apellidos){
         this.apellidos = apellidos;
     }
     
+    //Devuelve la cedula del paciente
     public int getCedula(){
         return cedula;
     }
     
+    //Ajusta la cedula del paciente
     public void setCedula(int cedula){
         this.cedula = cedula;
     }
     
+    //Devuelve el arreglo de atributos del paciente
     public Object[] toArray() {
         Object[] r = new Object[5];
         r[0] = getCedula();
@@ -60,6 +72,7 @@ public class Paciente {
         return r;
     }
     
+    //Ajusta los atributos del paciente
     public void fijarAtributo(Object aValue, int columnIndex) {
         switch (columnIndex) {
             case 0:
@@ -82,10 +95,12 @@ public class Paciente {
         }
     }
     
+    //Devuelve el nombre de los campos del Paciente
     public static String[] nombreCampos(){
         return NOMBRE_CAMPOS;
     }
     
+    //Devuelve la cantidad de los campos del Paciente
     public static int numCampos(){
         return Paciente.class.getClass().getFields().length;
     }    

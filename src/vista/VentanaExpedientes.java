@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 
+    //Clase que define, ajusta y muestra la ventana de expedientes
 public class VentanaExpedientes extends JPanel implements Observer {
 
     public VentanaExpedientes(Control nuevoGestor) {
@@ -35,12 +36,14 @@ public class VentanaExpedientes extends JPanel implements Observer {
         estado.mostrarMensaje("Programa iniciado ...");
     }
 
+    //Ajusta la configuración básica de la ventana
     private void ajustarConfiguracionInicial() {
         setSize(800, 400);
     }
 
     GridBagConstraints gbc = new GridBagConstraints();
 
+    //Ajusta los componentes de la ventana
     private void ajustarComponentes() {
         estado = new BarraEstado();
         //Inicializamos paneles
@@ -110,6 +113,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
         add(panelPrincipal, BorderLayout.CENTER);
     }
 
+    //Ajusta los eventos de la ventana
     private void ajustarEventos() {
         btnBuscarCedula.addActionListener(new ActionListener() {
             @Override
@@ -161,12 +165,14 @@ public class VentanaExpedientes extends JPanel implements Observer {
 
     }
 
+    //Inicia la ventana
     public void iniciar() {
         gestorPrincipal.registrar(this);
         estado.mostrarMensaje("Programa iniciado ...");
         setVisible(true);
     }
 
+    //Actualiza la información proveniente del modelo
     @Override
     public void update(Observable modelo, Object evento) {
     }

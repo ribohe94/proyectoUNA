@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package vista;
 
 import controlador.Control;
@@ -28,6 +24,7 @@ import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
 import modelo.Expediente;
 
+    //Clase que define, ajusta y muestra la ventana de examenes
 public class VentanaExamen extends JPanel {
 
     public VentanaExamen(Control nuevoGestor) {
@@ -38,10 +35,12 @@ public class VentanaExamen extends JPanel {
         estado.mostrarMensaje("Programa iniciado ...");
     }
 
+    //Ajusta la configuración básica de la ventana
     private void ajustarConfigInic() {
         setSize(800, 400);
     }
 
+    //Ajusta los componentes de la ventana
     private void ajustarComponentes() {
         estado = new BarraEstado();
         //inicializamos Colores
@@ -327,6 +326,7 @@ public class VentanaExamen extends JPanel {
         this.add(panelPrincipalSangre, BorderLayout.CENTER);
     }
 
+    //Ajusta los eventos de la ventana
     private void ajustarEventos() {
         btnAgregar.addActionListener(new ActionListener() {
 

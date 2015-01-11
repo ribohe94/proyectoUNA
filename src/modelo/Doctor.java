@@ -1,6 +1,7 @@
 
 package modelo;
 
+    //Clase que define atributos y métodos de los Doctores
 public class Doctor {
 
     public Doctor() {
@@ -14,46 +15,57 @@ public class Doctor {
         this.disponible = disponible;
     }
 
+    //Devuelve el nombre del doctor
     public String getNombre() {
         return nombre;
     }
 
+    //Ajusta el nombre del doctor
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-
+    
+    //Devuelve el apellido del doctor
     public String getApellido() {
         return apellido;
     }
 
+    //Ajusta el apellido del doctor
     public void setApellido(String apellido) {
         this.apellido = apellido;
     }
 
+    //Devuelve el ID del doctor
     public String getId() {
         return id;
     }
 
+    //Ajusta el ID del doctor
     public void setId(String id) {
         this.id = id;
     }
 
+    //Devuelve la edad del doctor
     public int getEdad() {
         return edad;
     }
 
+    //Ajusta la edad del doctor
     public void setEdad(int edad) {
         this.edad = edad;
     }
     
+    //Devuelve la disponibilidad del doctor
     public boolean getDisponible(){
         return disponible;
     }
     
+    //Ajusta la disponibilidad del doctor
     public void setDisponible(boolean disponible){
         this.disponible = disponible;
     }
 
+    //Devuelve el arreglo de atributos del doctor
     public Object[] toArray() {
         Object[] r = new Object[5];
         r[0] = getId();
@@ -64,6 +76,7 @@ public class Doctor {
         return r;
     }
 
+    //Ajusta los atributos del doctor
     public void fijarAtributo(Object aValue, int columnIndex) {
         switch (columnIndex) {
             case 0:
@@ -86,10 +99,12 @@ public class Doctor {
         }
     }
     
+    //Devuelve el nombre de los campos del Doctor
     public static String[] nombreCampos(){
         return NOMBRE_CAMPOS;
     }
     
+    //Devuelve la cantidad de los campos del Doctor
     public static int numCampos(){
         return Doctor.class.getClass().getFields().length;
     }

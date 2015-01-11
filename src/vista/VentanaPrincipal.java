@@ -9,6 +9,7 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTabbedPane;
 
+    //Clase que define, ajusta y muestra la ventana Principal
 public class VentanaPrincipal extends JFrame{
     
     public VentanaPrincipal(){
@@ -38,6 +39,7 @@ public class VentanaPrincipal extends JFrame{
         });
     }
     
+    //Ajusta la configuración básica de la ventana
     private void ajustarConfiguracionInicial(){
         setTitle("Aplicacion Hospital");
         setResizable(true);
@@ -46,6 +48,7 @@ public class VentanaPrincipal extends JFrame{
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
     }
     
+    //Ajusta los componentes de la ventana
     private void ajustarComponentes(Container c){        
         tabVentana.add("Doctores", ventanaDoctores);
         tabVentana.add("Pacientes", ventanaPacientes);        
@@ -56,20 +59,17 @@ public class VentanaPrincipal extends JFrame{
         c.add(tabVentana);
     }
     
+    //Inicia la ventana
     public void iniciar(){
         setVisible(true);
     }
     
+    //Cierra la ventana
     public void cerrar(){
         if(JOptionPane.showConfirmDialog(null, "¿Desea salir de la aplicación?", null, JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION){
            System.exit(0);
         }
-    }      
-    
-    public void citas(){
-        setVisible(false);
-        ventanaCitas.iniciar();
-    }          
+    }             
 
     //ATRIBUTOS
 

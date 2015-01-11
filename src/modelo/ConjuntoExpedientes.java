@@ -15,12 +15,13 @@ public class ConjuntoExpedientes{
     }
     
     //Devuelve un expediente 
-    public Expediente getExpediente(int cedulaPaciente){
+    public Expediente getExpediente(int cedulaPaciente){        
         for(int i = 0; i < expedientes.size(); i++){
             if(expedientes.get(i).getCedulaPaciente() == cedulaPaciente){
                 return expedientes.get(i);
             }
         }
+        System.out.println("Aquí");
         return new Expediente(0);   //No sucederá por la validación anteriormente creada
     }
     

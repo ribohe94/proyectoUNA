@@ -1,4 +1,5 @@
 
+                
 package proyecto.pkg1;
 
 import vista.VentanaPrincipal;

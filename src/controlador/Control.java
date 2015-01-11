@@ -101,8 +101,8 @@ public class Control {
     }
 //Agrega un nuevo expediente
 
-    public void addExpediente(Expediente expediente) {
-        datos.addExpediente(expediente);
+    public void addExamen(String ex, int cedula){
+        datos.addExamen(ex, cedula);
     }
 //Devuelve un String con todos los examenes en el expediente de un Paciente
 

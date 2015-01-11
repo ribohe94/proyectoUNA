@@ -327,32 +327,90 @@ public class VentanaExamen extends JPanel implements Observer{
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                Expediente expediente = new Expediente(cedulas.get(cmbCedula.getSelectedIndex()));
-//                System.out.println(cedulas.get(cmbCedula.getSelectedIndex()) + lbHematocrito.getText());
+                int cedula = cedulas.get(cmbCedula.getSelectedIndex());
+                //Expediente expediente = new Expediente(cedulas.get(cmbCedula.getSelectedIndex()));
+//                System.out.println(cedulas.get(cmbCedula.getSelectedIndex()) + lbHematocrito.getText());               
                 
-                expediente.agregarExamen((lbHematocrito.getText() + txtHematocrito.getText()
-                        + lbHemoglobina.getText() + txtHemoglobina.getText() + "\n"
-                        + lbLeucocitos.getText() + txtLeucocitos.getText() + "\n"
-                        + lbSegmentados.getText() + txtSegmentados.getText() + "\n"
-                        + lbLinfocitos.getText() + txtLinfocitos.getText() + "\n"
-                        + lbECG.getText() + txtECG.getText() + "\n"
-                        + lbInterPR.getText() + txtInterPR.getText() + "\n"
-                        + lbAlteracionesST.getText() + txtAlteracionesST.getText() + "\n"
-                        + lbFrecuencia.getText() + txtFrecuencia.getText() + "\n"
-                        + lbEjeCorazon.getText() + txtEjeCorazon.getText() + "\n"
-                        + lbFracturas.getText() + txtFracturas.getText() + "\n"
-                        + lbInfarto.getText() + txtInfarto.getText() + "\n"
-                        + lbCalcificacion.getText() + txtCalcificacion.getText() + "\n"
-                        + lbHemorragia.getText() + txtHemorragia.getText() + "\n"
-                        + lbTrauma.getText() + txtTrauma.getText() + "\n"
-                        + lbProtuberancia.getText() + txtProtuberancia.getText() + "\n"
-                        + lbAneurisma.getText() + txtAneurisma.getText() + "\n"
-                        + lbEstenosis.getText() + txtEstenosis.getText() + "\n"
-                        + lbHuevo.getText() + txtHuevo.getText() + "\n"
-                        + lbLeche.getText() + txtLeche.getText() + "\n"
-                        + lbNueces.getText() + txtNueces.getText() + "\n"
-                        + lbMariscos.getText() + txtMariscos.getText() + "\n"));
-                gestorPrincipal.addExpediente(expediente);
+                //Examen Sangre                
+                if(!txtHematocrito.getText().isEmpty() || !txtHemoglobina.getText().isEmpty() || !txtLeucocitos.getText().isEmpty() || !txtSegmentados.getText().isEmpty() || !txtLinfocitos.getText().isEmpty() ){
+                    String examenSangre = String.format( "Examen de Sangre.\n" +
+                            lbHematocrito.getText() + txtHematocrito.getText() + "%n" + 
+                            lbHemoglobina.getText() + txtHemoglobina.getText() + "%n" +
+                            lbLeucocitos.getText() + txtLeucocitos.getText() + "%n" +
+                            lbSegmentados.getText() + txtSegmentados.getText() + "%n" +
+                            lbLinfocitos.getText() + txtLinfocitos.getText() + "%n");
+                    //Se agrega el examen
+                    gestorPrincipal.addExamen(examenSangre, cedula);
+                }                
+
+                //Examen Electrocardiograma
+                if(!txtECG.getText().isEmpty() || !txtInterPR.getText().isEmpty() || !txtAlteracionesST.getText().isEmpty() || !txtFrecuencia.getText().isEmpty() || !txtEjeCorazon.getText().isEmpty() ){
+                    String examenElectrocardiograma = String.format( "Examen de Electrocardiograma.%n" +
+                            lbECG.getText() + txtECG.getText() + "%n" + 
+                            lbInterPR.getText() + txtInterPR.getText() + "%n" +
+                            lbAlteracionesST.getText() + txtAlteracionesST.getText() + "%n" +
+                            lbFrecuencia.getText() + txtFrecuencia.getText() + "%n" +
+                            lbEjeCorazon.getText() + txtEjeCorazon.getText() + "%n");
+                    //Se agrega el examen
+                    gestorPrincipal.addExamen(examenElectrocardiograma, cedula);
+                }
+
+                //Examen TAC
+                if(!txtFracturas.getText().isEmpty() || !txtInfarto.getText().isEmpty() || !txtCalcificacion.getText().isEmpty() || !txtHemorragia.getText().isEmpty() || !txtTrauma.getText().isEmpty() ){
+                    String examenTAC = String.format( "Examen TAC.%n" +
+                            lbFracturas.getText() + txtFracturas.getText() + "%n" + 
+                            lbInfarto.getText() + txtInfarto.getText() + "%n" +
+                            lbCalcificacion.getText() + txtCalcificacion.getText() + "%n" +
+                            lbHemorragia.getText() + txtHemorragia.getText() + "%n" +
+                            lbTrauma.getText() + txtTrauma.getText() + "%n");
+                    //Se agrega el examen
+                    gestorPrincipal.addExamen(examenTAC, cedula);
+                }
+
+                //MRA
+                if(!txtProtuberancia.getText().isEmpty() || !txtAneurisma.getText().isEmpty() || !txtEstenosis.getText().isEmpty()){
+                    String examenMRA = String.format( "Examen MRA.%n" +
+                            lbProtuberancia.getText() + txtProtuberancia.getText() + "%n" + 
+                            lbAneurisma.getText() + txtAneurisma.getText() + "%n" +
+                            lbEstenosis.getText() + txtEstenosis.getText() + "%n");
+                    //Se agrega el examen
+                    gestorPrincipal.addExamen(examenMRA, cedula);
+                }
+
+                //Alergias
+                if(!txtHuevo.getText().isEmpty() || !txtLeche.getText().isEmpty() || !txtNueces.getText().isEmpty() || !txtMariscos.getText().isEmpty()){
+                    String examenAlergias = String.format( "Alergias.%n" +
+                            lbHuevo.getText() + txtHuevo.getText() + "%n" + 
+                            lbLeche.getText() + txtLeche.getText() + "%n" +
+                            lbNueces.getText() + txtNueces.getText() + "%n" +
+                            lbMariscos.getText() + txtMariscos.getText() + "%n");
+                    //Se agrega el examen
+                    gestorPrincipal.addExamen(examenAlergias, cedula);
+                }
+                
+//                expediente.agregarExamen(String.format(lbHematocrito.getText() + txtHematocrito.getText()
+//                        + lbHemoglobina.getText() + txtHemoglobina.getText() + "%n"
+//                        + lbLeucocitos.getText() + txtLeucocitos.getText() + "%n"
+//                        + lbSegmentados.getText() + txtSegmentados.getText() + "%n"
+//                        + lbLinfocitos.getText() + txtLinfocitos.getText() + "%n"
+//                        + lbECG.getText() + txtECG.getText() + "%n"
+//                        + lbInterPR.getText() + txtInterPR.getText() + "%n"
+//                        + lbAlteracionesST.getText() + txtAlteracionesST.getText() + "%n"
+//                        + lbFrecuencia.getText() + txtFrecuencia.getText() + "%n"
+//                        + lbEjeCorazon.getText() + txtEjeCorazon.getText() + "\n"
+//                        + lbFracturas.getText() + txtFracturas.getText() + "%n"
+//                        + lbInfarto.getText() + txtInfarto.getText() + "%n"
+//                        + lbCalcificacion.getText() + txtCalcificacion.getText() + "%n"
+//                        + lbHemorragia.getText() + txtHemorragia.getText() + "%n"
+//                        + lbTrauma.getText() + txtTrauma.getText() + "%n"
+//                        + lbProtuberancia.getText() + txtProtuberancia.getText() + "%n"
+//                        + lbAneurisma.getText() + txtAneurisma.getText() + "%n"
+//                        + lbEstenosis.getText() + txtEstenosis.getText() + "%n"
+//                        + lbHuevo.getText() + txtHuevo.getText() + "%n"
+//                        + lbLeche.getText() + txtLeche.getText() + "%n"
+//                        + lbNueces.getText() + txtNueces.getText() + "%n"
+//                        + lbMariscos.getText() + txtMariscos.getText() + "%n"));
+//                gestorPrincipal.addExamen(expediente);
             }
         });
     }

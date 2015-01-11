@@ -34,6 +34,7 @@ public class Modelo extends Observable{
     //Carga pacientes de prueba 
     public void cargarDatosPacientes(){
         pacientes.cargar();
+        expedientes.cargar();
         actualizar("Carga completada ...");
     }
     
@@ -99,9 +100,12 @@ public class Modelo extends Observable{
     }
     
     //Agrega un nuevo expediente
-    public void addExpediente(Expediente ex){
-        expedientes.agregar(ex);
-        actualizar(ex);
+    public void addExamen(String ex, int cedula){
+//        expedientes.agregar(ex);
+        expedientes.getExpediente(cedula).agregarExamen(ex);
+        
+        actualizar(expedientes.getExpediente(cedula));
+        //actualizar(ex);
     }
     
     //Devuelve los examenes de un paciente

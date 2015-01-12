@@ -69,18 +69,18 @@ public class VentanaCitas extends JPanel implements Observer {
         //Inicializamos Botones
         btnAsignarCita = new JButton("Asignar Cita");
         //Inicializamos opciones y Menu
-        opcHora = new String[24];
+        opcHora = new String[10];
         opcMinutos = new String[60];
         opcAgno = new String[3];
         opcDia = new String[31];
         opcDia30 = new String[30];
         opcDia29 = new String[29];
         opcDia28 = new String[28];
-        for (int i = 0; i < 24; i++) {
+        for (int i = 7; i < 17; i++) {        
             if (i > 9) {
-                opcHora[i] = (String.valueOf(i) + ":00");
+                opcHora[i-7] = (String.valueOf(i) + ":00");
             } else {
-                opcHora[i] = ("0" + String.valueOf(i) + ":00");
+                opcHora[i-7] = ("0" + String.valueOf(i) + ":00");
             }
         }
         for (int i = 0; i < 60; i++) {

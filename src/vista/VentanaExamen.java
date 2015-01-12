@@ -24,6 +24,7 @@ import javax.swing.JTabbedPane;
 import javax.swing.JTextField;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import modelo.Paciente;
 
 public class VentanaExamen extends JPanel implements Observer{
 
@@ -302,9 +303,7 @@ public class VentanaExamen extends JPanel implements Observer{
         panelSangre.add(btnAgregar, gbc);
         panelSangre.setPreferredSize(new Dimension(WIDTH, 900));
         panelSangre.setBorder(new CompoundBorder(new EmptyBorder(10, 50, 10, 50), BorderFactory.createTitledBorder("Formulario de Examenes")));
-        JScrollPane scrollPaneTabla = new JScrollPane(panelSangre, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
-        
-        
+        JScrollPane scrollPaneTabla = new JScrollPane(panelSangre, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);                
 
         panelPrincipalSangre.setLayout(new BorderLayout());
         panelPrincipalSangre.setPreferredSize(new Dimension(WIDTH, 800));
@@ -389,8 +388,13 @@ public class VentanaExamen extends JPanel implements Observer{
     }
 
     @Override
-    public void update(Observable o, Object arg) {
-        estado.mostrarMensaje("" + arg);
+    public void update(Observable o, Object evento) {
+        estado.mostrarMensaje("" + evento);
+        if(evento instanceof Paciente){
+            cedulas.add(((Paciente)evento).getCedula());
+            cmbCedula.addItem(((Paciente)evento).getCedula());
+            repaint();
+        }
     }
 
     //Atributos

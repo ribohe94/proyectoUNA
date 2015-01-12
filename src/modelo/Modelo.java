@@ -101,11 +101,9 @@ public class Modelo extends Observable{
     
     //Agrega un nuevo expediente
     public void addExamen(String ex, int cedula){
-//        expedientes.agregar(ex);
         expedientes.getExpediente(cedula).agregarExamen(ex);
         
-        actualizar(expedientes.getExpediente(cedula));
-        //actualizar(ex);
+        actualizar(expedientes.getExpediente(cedula));        
     }
     
     //Devuelve los examenes de un paciente

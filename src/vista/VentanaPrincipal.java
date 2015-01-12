@@ -27,8 +27,7 @@ public class VentanaPrincipal extends JFrame{
         
         ventanaDoctores.iniciar();
         ventanaPacientes.iniciar();
-        ventanaCitas.iniciar();
-        ventanaExpedientes.iniciar();
+        ventanaCitas.iniciar();        
         
         ajustarConfiguracionInicial();
         ajustarComponentes(getContentPane());        
@@ -51,8 +50,7 @@ public class VentanaPrincipal extends JFrame{
     }
     
     //Ajusta los componentes de la ventana
-    private void ajustarComponentes(Container c){        
-        
+    private void ajustarComponentes(Container c){                
         tabVentana.setBackground(new Color(150, 150, 150));
         
         tabVentana.add("Doctores", ventanaDoctores);
@@ -61,9 +59,7 @@ public class VentanaPrincipal extends JFrame{
         tabVentana.add("Expedientes/Examenes", tabExamenExp);
         tabVentana.getSelectedComponent().setBackground(new Color(100, 100, 100));
         tabVentana.getSelectedComponent().setForeground(new Color(100, 100, 100));
-        
-        
-        
+                        
         c.add(tabVentana);
     }
     

@@ -63,8 +63,7 @@ public class VentanaCitas extends JPanel implements Observer {
         lbMinutos.setForeground(new Color(204, 204, 204));
         lbCedulaPaciente.setForeground(new Color(204, 204, 204));
         lbIdDoctor.setForeground(new Color(204, 204, 204));
-        //Inicializamos TXT
-        txtFecha = new JTextField(8);
+        //Inicializamos TXT        
         txtCedulaPaciente = new JTextField(8);
         txtIdDoctor = new JTextField(8);
         //Inicializamos Botones
@@ -239,52 +238,18 @@ public class VentanaCitas extends JPanel implements Observer {
 
         btnAsignarCita.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                String fecha = txtFecha.getText();
+            public void actionPerformed(ActionEvent e) {                
                 String id = txtIdDoctor.getText();
                 int hora, minutos, cedula, dia, mes, agno;
-
-                try {
-                    dia = Integer.parseInt(cmbDia.getSelectedItem().toString());
-                    System.out.println(dia);
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "La Fecha ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                try {
-                    mes = cmbMes.getSelectedIndex() + 1;
-                    System.out.println(mes);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "La Fecha ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                try {
-                    agno = Integer.parseInt(cmbAgno.getSelectedItem().toString());
-                    System.out.println(agno);
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "La Fecha ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                try {
-                    hora = cmbHoras.getSelectedIndex();
-                    System.out.println(hora);
-                } catch (Exception ex) {
-                    JOptionPane.showMessageDialog(null, "La Hora ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                try {
-                    minutos = Integer.parseInt(cmbMinutos.getSelectedItem().toString());
-                    System.out.println(minutos);
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "Los Minutos ingresados no son válidos.", null, JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-                try {
-                    cedula = Integer.parseInt(txtCedulaPaciente.getText());
-                } catch (NumberFormatException ex) {
-                    JOptionPane.showMessageDialog(null, "La Cédula ingresada no es válida.", null, JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
+                
+                dia = Integer.parseInt(cmbDia.getSelectedItem().toString());
+                mes = cmbMes.getSelectedIndex() + 1;
+                agno = Integer.parseInt(cmbAgno.getSelectedItem().toString());
+                hora = cmbHoras.getSelectedIndex();
+                
+                String min = cmbMinutos.getSelectedItem().toString().substring(cmbMinutos.getSelectedItem().toString().length() - 2);    
+                minutos = Integer.parseInt(min);
+                cedula = Integer.parseInt(txtCedulaPaciente.getText());
 
                 if (!gestorPrincipal.buscarPaciente(cedula)) {
                     JOptionPane.showMessageDialog(null, "El paciente no aparece dentro de la lista de asegurados.", null, JOptionPane.ERROR_MESSAGE);
@@ -301,6 +266,7 @@ public class VentanaCitas extends JPanel implements Observer {
                     return;
                 }
 
+                String fecha = dia + " / " + mes + " / " + agno + " / ";
                 Cita nuevaCita = new Cita(fecha, hora, minutos, cedula, id);
                 gestorPrincipal.asignarCita(nuevaCita);
                 JOptionPane.showMessageDialog(null, "Se ha asignado la cita exitosamente.", null, JOptionPane.INFORMATION_MESSAGE);
@@ -347,8 +313,7 @@ public class VentanaCitas extends JPanel implements Observer {
     private JLabel lbMinutos;
     private JLabel lbCedulaPaciente;
     private JLabel lbIdDoctor;
-    //TXT
-    private JTextField txtFecha;
+    //TXT    
     private JTextField txtCedulaPaciente;
     private JTextField txtIdDoctor;
     //Botones

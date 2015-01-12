@@ -22,8 +22,7 @@ public class Expediente {
     
     //Devuelve todos los examenes del expediente
     @Override
-    public String toString(){              
-        //return examenes.toString();             
+    public String toString(){                      
         String r = "";
         for(int i = 0; i < examenes.size(); i++){
             r += examenes.get(i);

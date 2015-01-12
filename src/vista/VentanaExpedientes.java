@@ -23,12 +23,14 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.CompoundBorder;
 import javax.swing.border.EmptyBorder;
+import modelo.Paciente;
 
     //Clase que define, ajusta y muestra la ventana de expedientes
 public class VentanaExpedientes extends JPanel implements Observer {
 
     public VentanaExpedientes(Control nuevoGestor) {
         gestorPrincipal = nuevoGestor;
+        gestorPrincipal.registrar(this);
         ajustarConfiguracionInicial();
         ajustarComponentes();
         ajustarEventos();
@@ -72,8 +74,7 @@ public class VentanaExpedientes extends JPanel implements Observer {
             cedulas.add(gestorPrincipal.recuperarPaciente(i).getCedula());
             cmbCedula.addItem(gestorPrincipal.recuperarPaciente(i).getCedula());
         }
-        //Ajustamos panelExpediente
-        //panelExpediente.setBorder(new CompoundBorder(new EmptyBorder(100, 100, 100, 100), BorderFactory.createTitledBorder("Listado de Exámenes")));
+        //Ajustamos panelExpediente        
         panelExpediente.setBorder(new CompoundBorder(new EmptyBorder(0, 20, 0, 20), BorderFactory.createTitledBorder("Listado de Exámenes")));
         panelExpediente.setBackground(new Color(102, 102, 102));        
 
@@ -151,26 +152,23 @@ public class VentanaExpedientes extends JPanel implements Observer {
 
         btnRegresar.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                //panelExpediente.removeAll();
+            public void actionPerformed(ActionEvent e) {                
                 panelPrincipal.remove(panelExpediente);
                 panelPrincipal.add(panelInfo, BorderLayout.CENTER);
                 panelPrincipal.repaint();
             }
         });
-
-    }
-
-    //Inicia la ventana
-    public void iniciar() {
-        gestorPrincipal.registrar(this);
-        estado.mostrarMensaje("Programa iniciado ...");
-        setVisible(true);
     }
 
     //Actualiza la información proveniente del modelo
     @Override
     public void update(Observable modelo, Object evento) {
+        estado.mostrarMensaje("" + evento);
+        if(evento instanceof Paciente){
+            cedulas.add(((Paciente)evento).getCedula());
+            cmbCedula.addItem(((Paciente)evento).getCedula());
+            repaint();
+        }
     }
 
     //Atributos

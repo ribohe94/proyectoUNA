@@ -53,7 +53,7 @@ public class VentanaPacientes extends JPanel implements Observer {
         lbApellidos = new JLabel("Apellidos: ");
         lbCedula = new JLabel("Identificacion: ");
         lbEdad = new JLabel("Edad: ");
-        lbPeso = new JLabel("Peso: ");
+        lbPeso = new JLabel("Peso (kg): ");
         //Ajustamos Labels
         lbEncabezado.setForeground(new Color(204, 204, 204));
         lbNombre.setForeground(new Color(204, 204, 204));

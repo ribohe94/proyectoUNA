@@ -56,7 +56,6 @@ public class Control {
 //Agrega un nuevo paciente
 
     public boolean agregarPaciente(Paciente nuevoPaciente) {
-//return datos.agregarPaciente(nuevoPaciente);
         if (datos.agregarPaciente(nuevoPaciente)) {
             datos.agregarExpediente(nuevoPaciente.getCedula());
             return true;

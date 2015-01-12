@@ -4,7 +4,6 @@ import java.util.Observer;
 import javax.swing.table.TableModel;
 import modelo.Cita;
 import modelo.Doctor;
-import modelo.Expediente;
 import modelo.Modelo;
 import modelo.Paciente;
 //Clase Controladora del Modelo

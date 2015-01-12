@@ -20,8 +20,6 @@ public class VentanaPrincipal extends JFrame{
         ventanaDoctores = new VentanaDoctores(gestor);
         ventanaPacientes = new VentanaPacientes(gestor);
         ventanaCitas = new VentanaCitas(gestor);
-        ventanaExamen = new VentanaExamen(gestor);
-        ventanaExpedientes = new VentanaExpedientes(gestor);
         tabExamenExp = new TabExamenExp(gestor);
         tabVentana = new JTabbedPane();
         
@@ -82,7 +80,5 @@ public class VentanaPrincipal extends JFrame{
     private VentanaDoctores ventanaDoctores;
     private VentanaCitas ventanaCitas;
     private VentanaPacientes ventanaPacientes;
-    private VentanaExamen ventanaExamen;
-    private VentanaExpedientes ventanaExpedientes;
     private TabExamenExp tabExamenExp;
 }
